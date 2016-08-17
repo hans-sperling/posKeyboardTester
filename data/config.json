@@ -1,0 +1,50 @@
+{
+    "IntelligentKeySelection": {
+        "enable": true,
+        "offset": 6
+    },
+
+    "KeystrokeRecorder": {
+        "offsettime": 30
+    },
+
+
+
+    "KeyboardLayouter": {
+        "keyboard": {
+            "background":  "FFFFFF",
+            "color":       "000000",
+            "connector": "USB",
+            "dimension": {
+                "x": 12,
+                "y": 7
+            },
+            "size": 50,
+            "margin": 4
+
+        },
+
+        "key": {
+            "background":  "FFFFFF",
+            "color":       "000000",
+            "rotation":    "0",
+            "dimension": {
+                "x": 1,
+                "y": 1
+            }
+        }
+    },
+
+
+
+    "LayoutLoader": {
+        "directory": "layouts/",
+        "extension": ".json",
+        "layouts": [
+            "layout",
+            "layout2",
+            "intellikeytest"
+        ]
+    }
+}
+
