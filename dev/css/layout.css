@@ -46,26 +46,23 @@ a {
 :focus {
   outline: none; }
 
+/* ------------------------------------------------------------------------------------------------------------- Body */
 body {
   position: absolute;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  /* -------------------------------------------------------------------------------------------- Theme colors DARK */
+  /* ------------------------------------------------------------------------------------------ Theme colors BRIGHT */ }
+  body.bright {
+    background: white; }
+  body.bright .application {
+    border-color: #202020; }
+  body.dark {
+    background: #202020; }
+  body.dark .application {
+    border-color: #dfdfdf; }
 
-/* ------------------------------------------------------------------------------------------------ Theme colors DARK */
-body.bright {
-  background: white; }
-
-body.bright .application {
-  border-color: #202020; }
-
-/* ---------------------------------------------------------------------------------------------- Theme colors BRIGHT */
-body.dark {
-  background: #202020; }
-
-body.dark .application {
-  border-color: #dfdfdf; }
-
-/* ------------------------------------------------------------------------------------------------------ Theme style */
+/* ------------------------------------------------------------------------------------------------------ Application */
 .application-wrapper {
   width: 100%;
   height: 100%;
