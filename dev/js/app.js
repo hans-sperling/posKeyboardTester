@@ -9,15 +9,15 @@ function PosKeyboardTester() {
 
     // ------------------------------------------------------------------------------------------------ Internal methods
 
-    function loadSettings() {
-        $.getJSON('./data/config.json', function(data){
-            // config = data;
+    function loadConfig(file) {
+        $.getJSON(file, function(data){
+            config = merge(config, data);
         });
     }
 
     // ------------------------------------------------------------------------------------------------------------ Init
 
     (function init() {
-        loadSettings();
+        //loadConfig('./data/layouts/test_layout.json');
     })();
 }
