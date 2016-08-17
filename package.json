@@ -13,7 +13,9 @@
         "grunt"                : "1.x.x",
         "grunt-cli"            : "1.2.x",
         "grunt-contrib-uglify" : "latest",
-        "grunt-contrib-concat" : "latest"
+        "grunt-contrib-concat" : "latest",
+        "grunt-contrib-watch"  : "latest",
+        "grunt-contrib-sass"   : "latest"
     },
     "bugs" : {
         "url"   : "https://github.com/hans-sperling/posKeyboardTester/issues",

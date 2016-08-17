@@ -12,6 +12,7 @@ Thumbs.db
 .project
 .settings
 .idea/*
+.sass-cache/
 
 # Application
 /node_modules

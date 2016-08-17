@@ -12,13 +12,12 @@ domReady(function() {
         files : [
 
             // Styling
-            './dev/css/reset.css',
             './dev/css/layout.css',
 
             // Vendor scripts
             './dev/js/vendor/jquery.js',
 
-            // Appkication
+            // Application scripts
             './dev/js/app.js'
         ],
         onAllLoaded  : function onAllLoaded() {
