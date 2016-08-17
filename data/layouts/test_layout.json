@@ -1,10 +1,5 @@
 {
     "keyboard": {
-        "number":    "1234567 0 A",
-        "caption":   "Tastatur POS Test",
-        "background":  "FFFFFF",
-        "color":       "000000",
-        "connector": "USB",
         "dimension": {
             "x": 12,
             "y": 7
