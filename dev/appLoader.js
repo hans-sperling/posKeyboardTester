@@ -17,12 +17,15 @@ domReady(function() {
             // Vendor scripts
             './dev/js/vendor/jquery.js',
 
+            // Main application script
+            './dev/js/app.js',
+
             // Library scripts
             './dev/js/lib/merge.js',
             './dev/js/lib/type.js',
 
-            // Application scripts
-            './dev/js/app.js'
+            // Application module scripts
+            './dev/js/modules/keyBoardData.js'
         ],
         onAllLoaded  : function onAllLoaded() {
             new PosKeyboardTester();
