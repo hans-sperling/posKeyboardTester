@@ -53,14 +53,20 @@
     // --------------------------------------------------------------------------------------------------------- Methods
 
     function loadConfig(file) {
+        $.getJSON(file)
+            .done(function (data) {
+                originalData = {};
+                originalData = modules.merge.deep(originalData, data);
+            })
+            .fail(function(jqxhr, textStatus, error) {
+                console.warn('Request Failed: ' + textStatus + ', ' + error);
+            });
+    }
 
-        $.getJSON(file, function (data) {
-            originalData = {};
-            originalData = modules.merge.deep(originalData, data);
-            console.log(originalData);
-        });
 
-        // todo - Is it better to use the native ajax request method of jquery, because of the error handing of ajax?
+    function createListData(originalData) {
+        var sizeX = '',
+            sizeY = '';
     }
 
     // --------------------------------------------------------------------------------------------------------- Returns
