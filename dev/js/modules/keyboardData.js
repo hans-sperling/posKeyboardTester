@@ -53,8 +53,11 @@
     // --------------------------------------------------------------------------------------------------------- Methods
 
     function loadConfig(file) {
+
         $.getJSON(file, function (data) {
-            originalData = modules.merge.deep({}, data);
+            originalData = {};
+            originalData = modules.merge.deep(originalData, data);
+            console.log(originalData);
         });
 
         // todo - Is it better to use the native ajax request method of jquery, because of the error handing of ajax?
