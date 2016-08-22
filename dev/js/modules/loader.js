@@ -58,16 +58,6 @@
                 console.warn('Request Failed: ' + textStatus + ', ' + error);
                 cb(true, error);
             });
-
-        return {
-            fail: function() {
-                console.log('fail');
-            },
-            done : function () {
-                console.log('done');
-
-            }
-        }
     }
 
     // --------------------------------------------------------------------------------------------------------- Returns

@@ -3,6 +3,8 @@ var AppLoader=function(){"use strict";function e(e){return"[object Array]"==Obje
 /* http://beeker.io/jquery-document-ready-equivalent-vanilla-javascript */
 var domReady=function(a){var b=!1,c=function(){document.addEventListener?(document.removeEventListener("DOMContentLoaded",d),window.removeEventListener("load",d)):(document.detachEvent("onreadystatechange",d),window.detachEvent("onload",d))},d=function(){b||!document.addEventListener&&"load"!==event.type&&"complete"!==document.readyState||(b=!0,c(),a())};if("complete"===document.readyState)a();else if(document.addEventListener)document.addEventListener("DOMContentLoaded",d),window.addEventListener("load",d);else{document.attachEvent("onreadystatechange",d),window.attachEvent("onload",d);var e=!1;try{e=null==window.frameElement&&document.documentElement}catch(f){}e&&e.doScroll&&!function g(){if(!b){try{e.doScroll("left")}catch(d){return setTimeout(g,50)}b=!0,c(),a()}}()}};
 
+var APPKEY = 'POSKT';
+
 domReady(function() {
     'use strict';
 

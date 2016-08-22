@@ -1,11 +1,11 @@
 /**
  *
  */
-var APPKEY = 'PdKT';
+
+var APPKEY = APPKEY || 'POSKT';
 
 function PosKeyboardTester() {
-    var app = window[APPKEY].init();
-    return app;
+    return window[APPKEY].init();
 }
 
 window[APPKEY] = (function() {
@@ -139,16 +139,8 @@ window[APPKEY] = (function() {
         initModules(CFG);
         runModules();
 
-        modules.loader.loadKeyboardLayoutConfig('data/layouts/test_layout.jsons')
-            .fail(function() {
 
-            })
-            .done(function () {
-
-            });
-
-        /*
-        modules.loader.loadKeyboardLayoutConfig('data/layouts/test_layout.jsons', function onCallback(err, data) {
+        modules.loader.loadKeyboardLayoutConfig('data/layouts/test_layout.json', function onCallback(err, data) {
             if (!err) {
                 console.info('Layout file has been loaded.');
 
@@ -157,7 +149,8 @@ window[APPKEY] = (function() {
                 console.warn('Layout file has not been loaded!', data);
             }
         });
-        */
+
+        console.log(modules.loader.loadKeyboardLayoutConfig('data/layouts/test_layout.json'));
 
         return {};
     }
