@@ -142,17 +142,18 @@ window[APPKEY] = (function() {
 
         modules.loader.loadKeyboardLayoutConfig('data/layouts/test_layout.json', function onCallback(err, data) {
             if (!err) {
-                console.info('Layout file has been loaded.');
-
+                onLoadSuccess(data);
             }
             else {
                 console.warn('Layout file has not been loaded!', data);
             }
         });
 
-        console.log(modules.loader.loadKeyboardLayoutConfig('data/layouts/test_layout.json'));
-
         return {};
+    }
+
+    function onLoadSuccess(data) {
+        modules.keyboard.update(data);
     }
 
     // ----------------------------------------------------------------------------------------------------- DEV RETURNS

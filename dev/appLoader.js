@@ -27,7 +27,7 @@ domReady(function() {
             './dev/js/lib/type.js',
 
             // Application module scripts
-            './dev/js/modules/keyBoardData.js',
+            './dev/js/modules/keyboard.js',
             './dev/js/modules/loader.js'
         ],
         onAllLoaded  : function onAllLoaded() {

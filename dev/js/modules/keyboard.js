@@ -1,18 +1,24 @@
 /**
  *
  */
-;(function keyboardData(app) {
+;(function keyboard(app) {
     'use strict';
 
     // ------------------------------------------------------------------------------------------------------ Properties
 
     // App internals
-    var modules = app.getModules();
+    var merge = app.getModule('merge');
 
     // Module internals
-    var originalData = {},
-        dimension    = { x : 0, y : 0},
-        keys         = [];
+    var defaultConfig = {
+            keyboard : {
+                dimension : { x : 0, y : 0}
+            },
+            keys      : []
+        },
+        dimension = { x : 0, y : 0},
+        keys      = [];
+
 
     // ------------------------------------------------------------------------------------------------ Module interface
 
@@ -47,7 +53,10 @@
      * @return {void}
      */
     function update(config) {
-        // Nothing to do yet
+        var cfg = merge.deep(defaultConfig, config);
+
+        dimension = cfg.keyboard.dimension;
+        keys      = cfg.keys;
     }
 
     // --------------------------------------------------------------------------------------------------------- Methods
@@ -56,7 +65,7 @@
     // --------------------------------------------------------------------------------------------------------- Returns
 
     // Append module with public methods and properties
-    app.appendModule({ keyboardData : {
+    app.appendModule({ keyboard : {
         init      : init,
         run       : run,
         update    : update
