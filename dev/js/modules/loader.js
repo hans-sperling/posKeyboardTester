@@ -1,18 +1,13 @@
 /**
  *
  */
-;(function keyboardData(app) {
+;(function loader(app) {
     'use strict';
 
     // ------------------------------------------------------------------------------------------------------ Properties
 
     // App internals
     var modules = app.getModules();
-
-    // Module internals
-    var originalData = {},
-        dimension    = { x : 0, y : 0},
-        keys         = [];
 
     // ------------------------------------------------------------------------------------------------ Module interface
 
@@ -35,7 +30,7 @@
      * @return {void}
      */
     function run() {
-        // ...
+        // Nothing to do yet
     }
 
 
@@ -52,13 +47,36 @@
 
     // --------------------------------------------------------------------------------------------------------- Methods
 
+    function loadKeyboardLayoutConfig(file, callback) {
+        var cb = isFunction(callback) ? callback : function() {};
+
+        $.getJSON(file)
+            .done(function (data) {
+                cb(false, data);
+            })
+            .fail(function(jqxhr, textStatus, error) {
+                console.warn('Request Failed: ' + textStatus + ', ' + error);
+                cb(true, error);
+            });
+
+        return {
+            fail: function() {
+                console.log('fail');
+            },
+            done : function () {
+                console.log('done');
+
+            }
+        }
+    }
 
     // --------------------------------------------------------------------------------------------------------- Returns
 
     // Append module with public methods and properties
-    app.appendModule({ keyboardData : {
-        init      : init,
-        run       : run,
-        update    : update
+    app.appendModule({ loader : {
+        init                     : init,
+        run                      : run,
+        update                   : update,
+        loadKeyboardLayoutConfig : loadKeyboardLayoutConfig
     }});
 })(window[APPKEY]);

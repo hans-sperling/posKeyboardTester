@@ -5,7 +5,6 @@ var APPKEY = 'PdKT';
 
 function PosKeyboardTester() {
     var app = window[APPKEY].init();
-    console.log(app);
     return app;
 }
 
@@ -139,6 +138,26 @@ window[APPKEY] = (function() {
 
         initModules(CFG);
         runModules();
+
+        modules.loader.loadKeyboardLayoutConfig('data/layouts/test_layout.jsons')
+            .fail(function() {
+
+            })
+            .done(function () {
+
+            });
+
+        /*
+        modules.loader.loadKeyboardLayoutConfig('data/layouts/test_layout.jsons', function onCallback(err, data) {
+            if (!err) {
+                console.info('Layout file has been loaded.');
+
+            }
+            else {
+                console.warn('Layout file has not been loaded!', data);
+            }
+        });
+        */
 
         return {};
     }
