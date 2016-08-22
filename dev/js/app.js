@@ -21,7 +21,7 @@ window[APPKEY] = (function() {
     /**
      * Appends a given module object.
      *
-     * @param   {object} module
+     * @param   {Object} module
      * @returns {void}
      */
     function appendModule(module) {
@@ -46,7 +46,7 @@ window[APPKEY] = (function() {
      * Initializes all appended modules. Will call all init methods of the appended modules with the given
      * configuration.
      *
-     * @param   config
+     * @param   {Object} config
      * @returns {void}
      */
     function initModules(config) {
@@ -83,7 +83,7 @@ window[APPKEY] = (function() {
     /**
      * Updates all appended modules. Will call all update methods of the appended modules with the given configuration.
      *
-     * @param   config
+     * @param   {Object} config
      * @returns {void}
      */
     function updateModules(config) {
@@ -102,7 +102,7 @@ window[APPKEY] = (function() {
     /**
      * Returns all modules.
      *
-     * @returns {object}
+     * @returns {Object}
      */
     function getModules() {
         return modules;
@@ -112,8 +112,8 @@ window[APPKEY] = (function() {
     /**
      * Returns a requested module by the given id.
      *
-     * @param   {string} id - ID of the requested module
-     * @returns {object}
+     * @param   {String} id - ID of the requested module
+     * @returns {Object}
      */
     function getModule(id) {
         if (modules[id]) {
@@ -130,7 +130,7 @@ window[APPKEY] = (function() {
     /**
      * Initialize this app.
      *
-     * @param   {object} config
+     * @param   {Object} config
      * @returns {{render: render, update: update}}
      */
     function init(config) {
@@ -152,6 +152,12 @@ window[APPKEY] = (function() {
         return {};
     }
 
+
+    /**
+     * Manages the flow of the app on successfully loading a keyboard layout config.
+     *
+     * @param  {Object} data - Data object of a keyboard layout
+     */
     function onLoadSuccess(data) {
         modules.keyboard.update(data);
     }

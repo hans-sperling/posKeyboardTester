@@ -14,7 +14,7 @@
      * Initializes this module - will be called at the beginning from the app. Updates the module with the given config.
      *
      * @public
-     * @param {object} config
+     * @param  {Object} config
      * @return {void}
      */
     function init(config) {
@@ -37,7 +37,7 @@
      * Updates this module, will be called on init and on general updating the app.
      *
      * @public
-     * @pram {object} config
+     * @param  {Object} config
      * @return {void}
      */
     function update(config) {
