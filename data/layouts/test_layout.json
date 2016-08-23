@@ -6,8 +6,8 @@
         },
         "background": "rgb(255, 255, 255)",
         "margin": 2,
-        "font": "Arial",
-        "fontSize": "16px"
+        "font": "Consolas",
+        "fontSize": "14px"
     },
     "keys": [
         {
@@ -72,7 +72,7 @@
             "input": [69],
             "caption": {
                 "encoding": "string",
-                "data":     "Pfan\nein"
+                "data":     "Pfand\nein"
             },
             "description": "Pfandeinzahlung",
             "background":  "0000FF",

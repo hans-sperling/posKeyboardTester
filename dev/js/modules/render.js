@@ -52,7 +52,7 @@
 
         canvas.style.background = cfg.keyboard.background;
         resizeStage(size.width, size.height);
-        renderKeys(cfg.keys, Number(cfg.keyboard.margin));
+        renderKeys(cfg.keys, Number(cfg.keyboard.margin), cfg.keyboard);
     }
 
     // --------------------------------------------------------------------------------------------------------- Methods
@@ -90,15 +90,16 @@
     /**
      * Renders all keys of the keyboard.
      *
-     * @param  {Array}  keys   - List of all keys
-     * @param  {Number} margin - Margin of all keys
+     * @param  {Array}  keys     - List of all keys
+     * @param  {Number} margin   - Margin of all keys
+     * @param  {Object} keyboard - Keyboard settings
      */
-    function renderKeys(keys, margin) {
+    function renderKeys(keys, margin, keyboard) {
         var i;
 
         for (i in keys) {
             if(keys.hasOwnProperty(i)) {
-                drawKey(keys[i], margin);
+                drawKey(keys[i], margin, keyboard);
             }
         }
     }
@@ -107,10 +108,11 @@
     /**
      * Draws a given key of the keyboard with all its properties.
      *
-     * @param {Object} key    - Key-Object
-     * @param {Number} margin - Margin of the key
+     * @param {Object} key      - Key-Object
+     * @param {Number} margin   - Margin of the key
+     * @param {Object} keyboard - Keyboard settings
      */
-    function drawKey(key, margin) {
+    function drawKey(key, margin, keyboard) {
         var start = {
                 x : (Number((key.pos.x) - 1) * unitSize) + margin,
                 y : (Number((key.pos.y) - 1) * unitSize) + margin
@@ -119,9 +121,13 @@
                 x : (start.x + (Number(key.dimension.x) * unitSize) - (2 * margin)),
                 y : (start.y + (Number(key.dimension.y) * unitSize) - (2 * margin))
             },
-            fontSize = ((key.fontSize) ? key.fontSize : '14px');
+            center = {
+                x : (start.x + ((end.x - start.x) / 2)),
+                y : (start.y + ((end.y - start.y) / 2))
+            },
+            fontSize = ((key.fontSize) ? key.fontSize : keyboard.fontSize);
 
-
+        // Key frame and colors
         context.save();
         context.fillStyle   = '#' + key.background;
         context.strokeStyle = '#000000';
@@ -135,25 +141,23 @@
         context.fill();
         context.restore();
 
+        // Key content, font and rotation
         context.save();
-        context.translate((start.x + ((end.x - start.x) / 2)), (start.y + ((end.y - start.y) / 2)));
+        context.translate(center.x, center.y);
         context.rotate(key.rotation * Math.PI / 180);
-        context.textAlign   = 'center';
-
-        context.font = fontSize + ' Arial';
         context.fillStyle = '#' + key.color;
+        context.textAlign = 'center';
+        context.font      = fontSize + ' ' + keyboard.font;
+
         if (key.caption.encoding.toLowerCase() === 'string') {
             context.fillText(key.caption.data, 0,0 );
         }
         else if (key.caption.encoding.toLowerCase() == 'unicode') {
             var tmp = '';
             for (var j = 0 ; j < key.caption.data.length; j++) {
-                if (tmp != '') {
-                    tmp += ','
-                }
+                if (tmp != '') { tmp += ',' }
                 tmp += key.caption.data[j];
             }
-
             context.fillText(String.fromCharCode(tmp), 0,0);
         }
         context.restore();
