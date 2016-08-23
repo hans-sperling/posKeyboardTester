@@ -3,7 +3,9 @@
         "dimension": {
             "x": 12,
             "y": 7
-        }
+        },
+        "background": "rgb(255, 255, 255)",
+        "margin": 2
     },
     "keys": [
         {

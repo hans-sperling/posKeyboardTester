@@ -48,34 +48,14 @@
      */
     function update(config) {
         var cfg  = config,
-            size = getStageSize(cfg.keyboard.dimension.x, cfg.keyboard.dimension.y);
+            size = getStageSize(Number(cfg.keyboard.dimension.x), Number(cfg.keyboard.dimension.y));
 
+        canvas.style.background = cfg.keyboard.background;
         resizeStage(size.width, size.height);
-
-        for (var i in cfg.keys) {
-            var key;
-
-            if(cfg.keys.hasOwnProperty(i)) {
-                key = cfg.keys[i];
-
-                drawKey(key.pos, key.dimension);
-            }
-        }
+        renderKeys(cfg.keys, Number(cfg.keyboard.margin));
     }
 
-
-    function drawKey(pos, dismension) {
-        context.save();
-        context.fillStyle = 'rgb(63, 127, 255)';
-        context.fillRect(
-            (pos.x - 1) * unitSize + 2,
-            (pos.y - 1) * unitSize + 2,
-            dismension.x * unitSize - 4,
-            dismension.y * unitSize - 4
-        );
-        context.restore();
-    }
-
+    // --------------------------------------------------------------------------------------------------------- Methods
 
     /**
      * Returns the computed width and height of the stage.
@@ -99,16 +79,57 @@
      * @param  {Number} height
      */
     function resizeStage(width, height) {
-        var $canvas = $('#Stage');
+        canvas.width  = width;
+        canvas.height = height;
 
-        $canvas.width(width);
-        $canvas.height(height);
+        canvas.style.width  = width  + 'px';
+        canvas.style.height = height + 'px';
     }
 
-    // --------------------------------------------------------------------------------------------------------- Methods
 
-    function renderKeys(keys) {
+    /**
+     * Renders all keys of the keyboard.
+     *
+     * @param  {Array}  keys   - List of all keys
+     * @param  {Number} margin - Margin of all keys
+     */
+    function renderKeys(keys, margin) {
+        var i;
 
+        for (i in keys) {
+            if(keys.hasOwnProperty(i)) {
+                drawKey(keys[i], margin);
+            }
+        }
+    }
+
+
+    /**
+     * Draws a given key of the keyboard with all its properties.
+     *
+     * @param {Object} key    - Key-Object
+     * @param {Number} margin - Margin of the key
+     */
+    function drawKey(key, margin) {
+        var start = {
+                x : (Number((key.pos.x) - 1) * unitSize) + margin,
+                y : (Number((key.pos.y) - 1) * unitSize) + margin
+            },
+            end = {
+                x : (start.x + (Number(key.dimension.x) * unitSize) - (2 * margin)),
+                y : (start.y + (Number(key.dimension.x) * unitSize) - (2 * margin))
+            };
+
+        context.fillStyle   = '#' + key.background;
+        context.strokeStyle = '#000000';
+        context.beginPath();
+        context.moveTo(start.x, start.y);
+        context.lineTo(end.x, start.y);
+        context.lineTo(end.x, end.y);
+        context.lineTo(start.x, end.y);
+        context.closePath();
+        context.stroke();
+        context.fill();
     }
 
     // --------------------------------------------------------------------------------------------------------- Returns
