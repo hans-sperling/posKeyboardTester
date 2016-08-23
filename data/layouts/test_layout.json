@@ -5,7 +5,9 @@
             "y": 7
         },
         "background": "rgb(255, 255, 255)",
-        "margin": 2
+        "margin": 2,
+        "font": "Arial",
+        "fontSize": "16px"
     },
     "keys": [
         {
@@ -33,6 +35,7 @@
                 "encoding": "unicode",
                 "data":     [8593]
             },
+            "fontSize": "26px",
             "description": "Pfeil hoch",
             "background":  "CCCCCC",
             "color":       "000000",
@@ -69,11 +72,11 @@
             "input": [69],
             "caption": {
                 "encoding": "string",
-                "data":     "Pfand ein"
+                "data":     "Pfan\nein"
             },
             "description": "Pfandeinzahlung",
             "background":  "0000FF",
-            "color":       "000000",
+            "color":       "FFFFFF",
             "rotation":    "0",
             "pos": {
                 "x": 4,
@@ -109,6 +112,7 @@
                 "encoding": "unicode",
                 "data":     [8592]
             },
+            "fontSize": "26px",
             "description": "Pfeil links",
             "background":  "CCCCCC",
             "color":       "000000",
@@ -128,6 +132,7 @@
                 "encoding": "unicode",
                 "data":     [8595]
             },
+            "fontSize": "26px",
             "description": "Pfeil unten",
             "background":  "CCCCCC",
             "color":       "000000",
@@ -147,6 +152,7 @@
                 "encoding": "unicode",
                 "data":     [8594]
             },
+            "fontSize": "26px",
             "description": "Pfeil rechts",
             "background":  "CCCCCC",
             "color":       "000000",
@@ -164,11 +170,11 @@
             "input": [65],
             "caption": {
                 "encoding": "string",
-                "data":     "Pfand aus"
+                "data":     "Pfand\naus"
             },
             "description": "Pfandauszahlung",
             "background":  "0000FF",
-            "color":       "000000",
+            "color":       "FFFFFF",
             "rotation":    "0",
             "pos": {
                 "x": 4,
@@ -451,6 +457,7 @@
                 "encoding": "unicode",
                 "data":     [8626]
             },
+            "fontSize": "26px",
             "description": "Enter / Return",
             "background":  "FFFFFF",
             "color":       "000000",

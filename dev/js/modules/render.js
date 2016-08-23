@@ -117,19 +117,48 @@
             },
             end = {
                 x : (start.x + (Number(key.dimension.x) * unitSize) - (2 * margin)),
-                y : (start.y + (Number(key.dimension.x) * unitSize) - (2 * margin))
-            };
+                y : (start.y + (Number(key.dimension.y) * unitSize) - (2 * margin))
+            },
+            fontSize = ((key.fontSize) ? key.fontSize : '14px');
 
+
+        context.save();
         context.fillStyle   = '#' + key.background;
         context.strokeStyle = '#000000';
         context.beginPath();
-        context.moveTo(start.x, start.y);
-        context.lineTo(end.x, start.y);
-        context.lineTo(end.x, end.y);
-        context.lineTo(start.x, end.y);
+            context.moveTo(start.x, start.y);
+            context.lineTo(end.x, start.y);
+            context.lineTo(end.x, end.y);
+            context.lineTo(start.x, end.y);
         context.closePath();
         context.stroke();
         context.fill();
+        context.restore();
+
+        context.save();
+        context.translate((start.x + ((end.x - start.x) / 2)), (start.y + ((end.y - start.y) / 2)));
+        context.rotate(key.rotation * Math.PI / 180);
+        context.textAlign   = 'center';
+
+        context.font = fontSize + ' Arial';
+        context.fillStyle = '#' + key.color;
+        if (key.caption.encoding.toLowerCase() === 'string') {
+            context.fillText(key.caption.data, 0,0 );
+        }
+        else if (key.caption.encoding.toLowerCase() == 'unicode') {
+            var tmp = '';
+            for (var j = 0 ; j < key.caption.data.length; j++) {
+                if (tmp != '') {
+                    tmp += ','
+                }
+                tmp += key.caption.data[j];
+            }
+
+            context.fillText(String.fromCharCode(tmp), 0,0);
+        }
+        context.restore();
+
+
     }
 
     // --------------------------------------------------------------------------------------------------------- Returns
