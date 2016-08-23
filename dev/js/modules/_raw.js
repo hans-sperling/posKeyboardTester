@@ -1,7 +1,7 @@
 /**
  *
  */
-;(function (app) {
+;(function _raw(app) {
     'use strict';
 
     // ------------------------------------------------------------------------------------------------------ Properties
@@ -51,7 +51,7 @@
     // --------------------------------------------------------------------------------------------------------- Returns
 
     // Append module with public methods and properties
-    app.appendModule({ color : {
+    app.appendModule({ _raw : {
         init      : init,
         run       : run,
         update    : update

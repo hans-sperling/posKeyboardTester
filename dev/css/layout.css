@@ -86,5 +86,5 @@ body {
     width: 500px;
     height: 300px;
     margin: 50px auto 0;
-    border: 1px solid;
-    box-sizing: content-box; }
+    box-sizing: content-box;
+    background: lightgrey; }

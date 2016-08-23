@@ -28,7 +28,8 @@ domReady(function() {
 
             // Application module scripts
             './dev/js/modules/keyboard.js',
-            './dev/js/modules/loader.js'
+            './dev/js/modules/loader.js',
+            './dev/js/modules/render.js'
         ],
         onAllLoaded  : function onAllLoaded() {
             new PosKeyboardTester();
