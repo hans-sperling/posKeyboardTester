@@ -6,10 +6,30 @@
 
     // ------------------------------------------------------------------------------------------------------ Properties
 
-    var merge    = app.getModule('merge'),
+    var merge    = app.getModule('merge').deep,
         canvas   = null,
         context  = null,
-        unitSize = 50;
+        defaultConfig = {
+            dimension       : { x : 1, y : 1 },
+            backgroundColor : 'rgb(255, 255, 255)',
+            borderColor     : 'rgb(0, 0, 0)',
+            textColor       : 'rgb(0, 0, 0)',
+            textAlign       : 'center',
+            font            : 'Arial',
+            rotation        : 0,
+            fontSize        : 14,
+            margin          : 2
+        },
+        _unitSize        = 50,
+        _dimension       = null,
+        _backgroundColor = null,
+        _borderColor     = null,
+        _textColor       = null,
+        _textAlign       = null,
+        _font            = null,
+        _rotation        = null,
+        _margin          = null,
+        _fontSize        = null;
 
     // ------------------------------------------------------------------------------------------------ Module interface
 
@@ -47,12 +67,23 @@
      * @return {void}
      */
     function update(config) {
-        var cfg  = config,
-            size = getStageSize(Number(cfg.keyboard.dimension.x), Number(cfg.keyboard.dimension.y));
+        var cfg  = merge(defaultConfig, config);
 
-        canvas.style.background = cfg.keyboard.background;
-        resizeStage(size.width, size.height);
-        renderKeys(cfg.keys, Number(cfg.keyboard.margin), cfg.keyboard);
+        _dimension = {
+            x : Number(cfg.keyboard.dimension.x),
+            y : Number(cfg.keyboard.dimension.y)
+        };
+        _backgroundColor = cfg.keyboard.backgroundColor;
+        _borderColor     = cfg.keyboard.borderColor;
+        _textColor       = cfg.keyboard.textColor;
+        _textAlign       = cfg.keyboard.textAlign;
+        _font            = cfg.keyboard.font;
+        _margin          = cfg.keyboard.margin;
+        _fontSize        = cfg.keyboard.fontSize;
+
+        canvas.style.background = _backgroundColor;
+        resizeStage();
+        renderKeys(cfg.keys);
     }
 
     // --------------------------------------------------------------------------------------------------------- Methods
@@ -66,24 +97,22 @@
      */
     function getStageSize(keyAmountX, keyAmountY) {
         return {
-            width  : unitSize * keyAmountX,
-            height : unitSize * keyAmountY
+            width  : _unitSize * keyAmountX,
+            height : _unitSize * keyAmountY
         };
     }
 
 
     /**
      * Resize the stage width the given width and height.
-     *
-     * @param  {Number} width
-     * @param  {Number} height
      */
-    function resizeStage(width, height) {
-        canvas.width  = width;
-        canvas.height = height;
+    function resizeStage() {
+        var size = getStageSize(_dimension.x, _dimension.y);
 
-        canvas.style.width  = width  + 'px';
-        canvas.style.height = height + 'px';
+        canvas.width        = size.width;
+        canvas.height       = size.height;
+        canvas.style.width  = size.width  + 'px';
+        canvas.style.height = size.height + 'px';
     }
 
 
@@ -91,15 +120,13 @@
      * Renders all keys of the keyboard.
      *
      * @param  {Array}  keys     - List of all keys
-     * @param  {Number} margin   - Margin of all keys
-     * @param  {Object} keyboard - Keyboard settings
      */
-    function renderKeys(keys, margin, keyboard) {
+    function renderKeys(keys) {
         var i;
 
         for (i in keys) {
             if(keys.hasOwnProperty(i)) {
-                drawKey(keys[i], margin, keyboard);
+                drawKey(keys[i]);
             }
         }
     }
@@ -109,23 +136,22 @@
      * Draws a given key of the keyboard with all its properties.
      *
      * @param {Object} key      - Key-Object
-     * @param {Number} margin   - Margin of the key
-     * @param {Object} keyboard - Keyboard settings
      */
-    function drawKey(key, margin, keyboard) {
+    function drawKey(key) {
         var start = {
-                x : (Number((key.pos.x) - 1) * unitSize) + margin,
-                y : (Number((key.pos.y) - 1) * unitSize) + margin
+                x : (Number((key.pos.x) - 1) * _unitSize) + _margin,
+                y : (Number((key.pos.y) - 1) * _unitSize) + _margin
             },
             end = {
-                x : (start.x + (Number(key.dimension.x) * unitSize) - (2 * margin)),
-                y : (start.y + (Number(key.dimension.y) * unitSize) - (2 * margin))
+                x : (start.x + (Number(key.dimension.x) * _unitSize) - (2 * _margin)),
+                y : (start.y + (Number(key.dimension.y) * _unitSize) - (2 * _margin))
             },
             center = {
                 x : (start.x + ((end.x - start.x) / 2)),
                 y : (start.y + ((end.y - start.y) / 2))
             },
-            fontSize = ((key.fontSize) ? key.fontSize : keyboard.fontSize);
+            fontSize  = ((key.fontSize)  ? key.fontSize : _fontSize),
+            textColor = ((key.textColor) ? key.textColor: _textColor);
 
         // Key frame and colors
         context.save();
@@ -141,18 +167,19 @@
         context.fill();
         context.restore();
 
-        // Key content, font and rotation
+
         context.save();
-        context.translate(center.x, center.y);
-        context.rotate(key.rotation * Math.PI / 180);
-        context.fillStyle = '#' + key.color;
-        context.textAlign = 'center';
-        context.font      = fontSize + ' ' + keyboard.font;
+        context.textAlign = (key.textAlign) ? key.textAlign : _textAlign;
 
         if (key.caption.encoding.toLowerCase() === 'string') {
-            context.fillText(key.caption.data, 0,0 );
+            drawString(context, key.caption.data, center.x, center.y, textColor, key.rotation, _font, fontSize);
         }
         else if (key.caption.encoding.toLowerCase() == 'unicode') {
+            context.translate(center.x, center.y);
+            context.rotate(key.rotation * Math.PI / 180);
+            context.fillStyle = '#' + key.backgroundColor;
+            context.font      = _font + ' ' + fontSize + 'px';
+
             var tmp = '';
             for (var j = 0 ; j < key.caption.data.length; j++) {
                 if (tmp != '') { tmp += ',' }
@@ -160,7 +187,40 @@
             }
             context.fillText(String.fromCharCode(tmp), 0,0);
         }
-        context.restore();
+            context.restore();
+    }
+
+
+    /*
+     * Draws a multiline string rotated in a canvas
+     *
+     * @param ctx (M) context of the canvas
+     * @param text (M) string may contain \n
+     * @param posX (M) horizontal start position
+     * @param posY (M) vertical start position
+     * @param textColor color
+     * @param rotation in degrees (by 360)
+     * @param font must be installed on client use websafe
+     * @param fonSize in Pixels
+     */
+    function drawString(ctx, text, posX, posY, textColor, rotation, font, fontSize) {
+        var i, lines = text.split("\n");
+
+        if (!rotation)  rotation  = 0;
+        if (!font)      font      = "'serif'";
+        if (!fontSize)  fontSize  = 14;
+        if (!textColor) textColor = '#000000';
+
+        ctx.font      = font + ' ' + fontSize + 'px';
+        console.log(font + ' ' + fontSize + 'px');
+        ctx.fillStyle = textColor;
+
+        ctx.translate(posX, posY);
+        ctx.rotate(rotation * Math.PI / 180);
+
+        for (i = 0; i < lines.length; i++) {
+            ctx.fillText(lines[i], 0, (i * fontSize));
+        }
     }
 
     // --------------------------------------------------------------------------------------------------------- Returns

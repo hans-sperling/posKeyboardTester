@@ -62,9 +62,9 @@
     // --------------------------------------------------------------------------------------------------------- Methods
 
     function getSortedKeyIndexes() {
-        var result = [];
+        var i, result = [];
 
-        for (var i in keys) {
+        for (i in keys) {
             if (keys.hasOwnProperty(i)) {
                 var sortedKeys = keys[i].input.sort();
 
@@ -75,10 +75,6 @@
         return result;
     }
 
-    function getKeys() {
-        return keys;
-    }
-
     // --------------------------------------------------------------------------------------------------------- Returns
 
     // Append module with public methods and properties
@@ -87,7 +83,6 @@
         run       : run,
         update    : update,
 
-        getKeys   : getKeys,
         getSortedKeyIndexes : getSortedKeyIndexes
     }});
 })(window[APPKEY]);

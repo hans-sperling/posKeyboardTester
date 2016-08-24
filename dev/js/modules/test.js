@@ -32,38 +32,40 @@
      * @return {void}
      */
     function run() {
+        var $toggleButton = $('#ToggleTest'),
+            $layout       = $('#Layout');
 
-        var $layout = $('#Layout').on('change', function(e1) {
-            // @todo - Enable Button
+        $layout.on('change', function(e1) {
+            // ...
         });
 
 
-        var $toggleButton = $('#ToggleTest');
         $toggleButton.on('click', function(e2) {
             e2.preventDefault();
-            isTesting = !isTesting;
+
+            //isTesting = !isTesting;
 
 
             if ($toggleButton.hasClass('active')) {
-                $toggleButton.removeClass('active');
-                $toggleButton.html('Start test')
+                $toggleButton.removeClass('active')
+                             .removeClass('paused')
+                             .html('Start test');
             }
             else {
-                $toggleButton.html('Testing ...');
-                $toggleButton.addClass('active');
+                $toggleButton.html('Testing ...')
+                             .removeClass('paused')
+                              .addClass('active');
 
                 // Test starts
                 keyIndexes = app.getModule('keyboard').getSortedKeyIndexes();
             }
-
         });
 
-
-
-        // todo - on focus lose
-
-
-
+        $toggleButton.on('blur', function(e) {
+            $toggleButton.removeClass('active')
+                         .addClass('paused')
+                         .html('Paused...');
+        });
 
         $toggleButton.on('keydown', function(e) {
             e.preventDefault();
@@ -73,7 +75,6 @@
             keyCounter++;
             keyStrokes.push(key);
         });
-
 
         $toggleButton.on("keyup", function(event) {
             event.preventDefault();

@@ -4,10 +4,14 @@
             "x": 12,
             "y": 7
         },
-        "background": "rgb(255, 255, 255)",
-        "margin": 2,
-        "font": "Consolas",
-        "fontSize": "14px"
+        "backgroundColor" : "rgb(255,255,255)",
+        "borderColor"     : "rgb(0,0,0)",
+        "textColor"       : "rgb(0,0,0)",
+        "textAlign"       : "center",
+        "rotation"        : 0,
+        "font"            : "Consolas",
+        "fontSize"        : 14,
+        "margin"          : 2
     },
     "keys": [
         {
@@ -17,9 +21,8 @@
                 "data":     "ESC"
             },
             "description": "Escape/Schließen",
-            "background":  "FF0000",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,0,0)",
+
             "pos": {
                 "x": 1,
                 "y": 1
@@ -35,11 +38,11 @@
                 "encoding": "unicode",
                 "data":     [8593]
             },
-            "fontSize": "26px",
+            "fontSize": 26,
             "description": "Pfeil hoch",
-            "background":  "CCCCCC",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(200,200,200)",
+            
+            
             "pos": {
                 "x": 2,
                 "y": 1
@@ -56,9 +59,9 @@
                 "data":     "CL"
             },
             "description": "Löschen",
-            "background":  "FF0000",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,0,0)",
+            
+            
             "pos": {
                 "x": 3,
                 "y": 1
@@ -75,9 +78,9 @@
                 "data":     "Pfand\nein"
             },
             "description": "Pfandeinzahlung",
-            "background":  "0000FF",
-            "color":       "FFFFFF",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(0,0,255)",
+            "textColor":       "rgb(255,255,255)",
+            
             "pos": {
                 "x": 4,
                 "y": 1
@@ -94,9 +97,9 @@
                 "data":     "BON"
             },
             "description": "Kassenbeleg drucken",
-            "background":  "CCCCCC",
-            "color":       "000000",
-            "rotation":    "-90",
+            "backgroundColor":  "rgb(200,200,200)",
+            
+            "rotation":    -90,
             "pos": {
                 "x": 5,
                 "y": 1
@@ -112,11 +115,11 @@
                 "encoding": "unicode",
                 "data":     [8592]
             },
-            "fontSize": "26px",
+            "fontSize": 26,
             "description": "Pfeil links",
-            "background":  "CCCCCC",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(200,200,200)",
+            
+            
             "pos": {
                 "x": 1,
                 "y": 2
@@ -132,11 +135,11 @@
                 "encoding": "unicode",
                 "data":     [8595]
             },
-            "fontSize": "26px",
+            "fontSize": 26,
             "description": "Pfeil unten",
-            "background":  "CCCCCC",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(200,200,200)",
+            
+            
             "pos": {
                 "x": 2,
                 "y": 2
@@ -152,11 +155,11 @@
                 "encoding": "unicode",
                 "data":     [8594]
             },
-            "fontSize": "26px",
+            "fontSize": 26,
             "description": "Pfeil rechts",
-            "background":  "CCCCCC",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(200,200,200)",
+            
+            
             "pos": {
                 "x": 3,
                 "y": 2
@@ -173,9 +176,9 @@
                 "data":     "Pfand\naus"
             },
             "description": "Pfandauszahlung",
-            "background":  "0000FF",
-            "color":       "FFFFFF",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(0,0,255)",
+            "textColor":       "rgb(255,255,255)",
+            
             "pos": {
                 "x": 4,
                 "y": 2
@@ -192,9 +195,9 @@
                 "data":     "KARTE"
             },
             "description": "Kartenzahlung",
-            "background":  "00FF00",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(0,255,0)",
+            
+            
             "pos": {
                 "x": 4,
                 "y": 3
@@ -211,9 +214,9 @@
                 "data":     "7"
             },
             "description": "7",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 1,
                 "y": 4
@@ -230,9 +233,9 @@
                 "data":     "8"
             },
             "description": "8",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 2,
                 "y": 4
@@ -249,9 +252,9 @@
                 "data":     "9"
             },
             "description": "9",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 3,
                 "y": 4
@@ -268,9 +271,9 @@
                 "data":     "4"
             },
             "description": "4",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 1,
                 "y": 5
@@ -287,9 +290,9 @@
                 "data":     "5"
             },
             "description": "5",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 2,
                 "y": 5
@@ -306,9 +309,9 @@
                 "data":     "6"
             },
             "description": "6",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 3,
                 "y": 5
@@ -325,9 +328,9 @@
                 "data":     "BAR"
             },
             "description": "Barzahlung",
-            "background":  "00FF00",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(0,255,0)",
+            
+            
             "pos": {
                 "x": 4,
                 "y": 5
@@ -344,9 +347,9 @@
                 "data":     "1"
             },
             "description": "1",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 1,
                 "y": 6
@@ -363,9 +366,9 @@
                 "data":     "2"
             },
             "description": "2",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 2,
                 "y": 6
@@ -382,9 +385,9 @@
                 "data":     "3"
             },
             "description": "3",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 3,
                 "y": 6
@@ -401,9 +404,9 @@
                 "data":     "0"
             },
             "description": "0",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 1,
                 "y": 7
@@ -420,9 +423,9 @@
                 "data":     "00"
             },
             "description": "Doppelnull",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 2,
                 "y": 7
@@ -439,9 +442,9 @@
                 "data":     "*"
             },
             "description": "Multiplikator",
-            "background":  "FFFF00",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "FFFF00",
+            
+            
             "pos": {
                 "x": 3,
                 "y": 7
@@ -457,11 +460,11 @@
                 "encoding": "unicode",
                 "data":     [8626]
             },
-            "fontSize": "26px",
+            "fontSize": 26,
             "description": "Enter / Return",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 4,
                 "y": 7
@@ -478,9 +481,9 @@
                 "data":     "A"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 7,
                 "y": 1
@@ -496,9 +499,9 @@
                 "data":     "B"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 8,
                 "y": 1
@@ -514,9 +517,9 @@
                 "data":     "C"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 9,
                 "y": 1
@@ -532,9 +535,9 @@
                 "data":     "D"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 10,
                 "y": 1
@@ -550,9 +553,9 @@
                 "data":     "E"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 11,
                 "y": 1
@@ -568,9 +571,9 @@
                 "data":     "F"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 12,
                 "y": 1
@@ -588,9 +591,9 @@
                 "data":     "G"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 7,
                 "y": 2
@@ -606,9 +609,9 @@
                 "data":     "H"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 8,
                 "y": 2
@@ -624,9 +627,9 @@
                 "data":     "I"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 9,
                 "y": 2
@@ -642,9 +645,9 @@
                 "data":     "J"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 10,
                 "y": 2
@@ -660,9 +663,9 @@
                 "data":     "F"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 11,
                 "y": 2
@@ -678,9 +681,9 @@
                 "data":     "K"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 12,
                 "y": 2
@@ -698,9 +701,9 @@
                 "data":     "L"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 7,
                 "y": 3
@@ -716,9 +719,9 @@
                 "data":     "E"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 8,
                 "y": 3
@@ -734,9 +737,9 @@
                 "data":     "F"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 9,
                 "y": 3
@@ -752,9 +755,9 @@
                 "data":     "F"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 10,
                 "y": 3
@@ -770,9 +773,9 @@
                 "data":     "M"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 11,
                 "y": 3
@@ -788,9 +791,9 @@
                 "data":     "N"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 12,
                 "y": 3
@@ -808,9 +811,9 @@
                 "data":     "O"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 7,
                 "y": 4
@@ -826,9 +829,9 @@
                 "data":     "E"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 8,
                 "y": 4
@@ -844,9 +847,9 @@
                 "data":     "P"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 9,
                 "y": 4
@@ -862,9 +865,9 @@
                 "data":     "Q"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 10,
                 "y": 4
@@ -880,9 +883,9 @@
                 "data":     "R"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 11,
                 "y": 4
@@ -898,9 +901,9 @@
                 "data":     "S"
             },
             "description": "Buchstabe",
-            "background":  "FFFFFF",
-            "color":       "000000",
-            "rotation":    "0",
+            "backgroundColor":  "rgb(255,255,255)",
+            
+            
             "pos": {
                 "x": 12,
                 "y": 4
