@@ -88,7 +88,7 @@
             }
         },
         {
-            "input": [17, 80],
+            "input": [80, 17],
             "caption": {
                 "encoding": "string",
                 "data":     "BON"

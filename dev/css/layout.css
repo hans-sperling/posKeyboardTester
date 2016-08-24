@@ -74,6 +74,14 @@ body {
   height: calc(100% - 100px);
   min-height: 100px;
   background: grey; }
+  .sidebar .scopeButton {
+    width: 160px;
+    margin: 20px;
+    height: 160px; }
+    .sidebar .scopeButton.active {
+      background: green; }
+    .sidebar .scopeButton.paused {
+      background: yellow; }
 
 .application-wrapper {
   float: left;

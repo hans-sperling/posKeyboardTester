@@ -61,6 +61,23 @@
 
     // --------------------------------------------------------------------------------------------------------- Methods
 
+    function getSortedKeyIndexes() {
+        var result = [];
+
+        for (var i in keys) {
+            if (keys.hasOwnProperty(i)) {
+                var sortedKeys = keys[i].input.sort();
+
+                result.push([sortedKeys.join('-'), i]);
+            }
+        }
+
+        return result;
+    }
+
+    function getKeys() {
+        return keys;
+    }
 
     // --------------------------------------------------------------------------------------------------------- Returns
 
@@ -68,6 +85,9 @@
     app.appendModule({ keyboard : {
         init      : init,
         run       : run,
-        update    : update
+        update    : update,
+
+        getKeys   : getKeys,
+        getSortedKeyIndexes : getSortedKeyIndexes
     }});
 })(window[APPKEY]);

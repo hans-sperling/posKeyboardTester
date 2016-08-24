@@ -42,6 +42,20 @@ body {
     height: calc(100% - 100px);
     min-height: 100px;
     background: grey;
+
+    .scopeButton {
+        width: 160px;
+        margin: 20px;
+        height: 160px;
+
+        &.active {
+            background: green;
+        }
+
+        &.paused {
+            background: yellow;
+        }
+    }
 }
 
 .application-wrapper {

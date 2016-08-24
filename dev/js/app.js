@@ -160,7 +160,7 @@ window[APPKEY] = (function() {
      */
     function onLoadSuccess(data) {
         modules.keyboard.update(data);
-        modules.render.update(data)
+        modules.render.update(data);
     }
 
     // ----------------------------------------------------------------------------------------------------- DEV RETURNS
