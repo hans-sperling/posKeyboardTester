@@ -3,103 +3,62 @@
         "dimension": {
             "x": 12,
             "y": 7
+        }
+    },
+    "defaults": {
+        "backgroundColor": "rgb(255,255,255)",
+        "borderColor": "rgb(0,0,0)",
+        "dimension": {
+            "x": 1,
+            "y": 1
         },
-        "backgroundColor" : "rgb(255,255,255)",
-        "borderColor"     : "rgb(0,0,0)",
-        "textColor"       : "rgb(0,0,0)",
-        "textAlign"       : "center",
-        "rotation"        : 0,
-        "font"            : "Consolas",
-        "fontSize"        : 14,
-        "margin"          : 2
+        "textColor": "rgb(0,0,0)",
+        "textAlign": "center",
+        "rotation": 0,
+        "font": "Consolas",
+        "fontSize": 14,
+        "margin": 2
     },
     "keys": [
         {
             "input": [27],
-            "caption": {
-                "encoding": "string",
-                "data":     "ESC"
-            },
-            "description": "Escape/Schließen",
-            "backgroundColor":  "rgb(255,0,0)",
-
+            "backgroundColor": "rgb(255,0,0)",
+            "caption": "ESC",
             "pos": {
                 "x": 1,
                 "y": 1
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        },
-        {
+        }, {
             "input": [38],
-            "caption": {
-                "encoding": "unicode",
-                "data":     [8593]
-            },
+            "backgroundColor": "rgb(200,200,200)",
             "fontSize": 26,
-            "description": "Pfeil hoch",
-            "backgroundColor":  "rgb(200,200,200)",
-            
-            
+            "caption": [8593],
             "pos": {
                 "x": 2,
                 "y": 1
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        },
-        {
+        }, {
             "input": [46],
-            "caption": {
-                "encoding": "string",
-                "data":     "CL"
-            },
-            "description": "Löschen",
-            "backgroundColor":  "rgb(255,0,0)",
-            
-            
+            "backgroundColor": "rgb(255,0,0)",
+            "caption": "CL",
             "pos": {
                 "x": 3,
                 "y": 1
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        },
-        {
+        }, {
             "input": [69],
-            "caption": {
-                "encoding": "string",
-                "data":     "Pfand\nein"
-            },
-            "description": "Pfandeinzahlung",
-            "backgroundColor":  "rgb(0,0,255)",
-            "textColor":       "rgb(255,255,255)",
-            
+            "backgroundColor": "rgb(0,0,255)",
+            "textColor": "rgb(255,255,255)",
+            "caption": "Pfand\nein",
             "pos": {
                 "x": 4,
                 "y": 1
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        },
-        {
+        }, {
             "input": [80, 17],
-            "caption": {
-                "encoding": "string",
-                "data":     "BON"
-            },
-            "description": "Kassenbeleg drucken",
-            "backgroundColor":  "rgb(200,200,200)",
-            
-            "rotation":    -90,
+            "backgroundColor": "rgb(200,200,200)",
+            "rotation": -90,
+            "caption": "BON",
             "pos": {
                 "x": 5,
                 "y": 1
@@ -108,96 +67,46 @@
                 "x": 1,
                 "y": 2
             }
-        },
-        {
+        }, {
             "input": [37],
-            "caption": {
-                "encoding": "unicode",
-                "data":     [8592]
-            },
             "fontSize": 26,
-            "description": "Pfeil links",
-            "backgroundColor":  "rgb(200,200,200)",
-            
-            
+            "backgroundColor": "rgb(200,200,200)",
+            "caption": [8592],
             "pos": {
                 "x": 1,
                 "y": 2
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        },
-        {
+        }, {
             "input": [40],
-            "caption": {
-                "encoding": "unicode",
-                "data":     [8595]
-            },
+            "backgroundColor": "rgb(200,200,200)",
             "fontSize": 26,
-            "description": "Pfeil unten",
-            "backgroundColor":  "rgb(200,200,200)",
-            
-            
+            "caption":  [8595],
             "pos": {
                 "x": 2,
                 "y": 2
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        },
-        {
+        }, {
             "input": [39],
-            "caption": {
-                "encoding": "unicode",
-                "data":     [8594]
-            },
+            "backgroundColor": "rgb(200,200,200)",
             "fontSize": 26,
-            "description": "Pfeil rechts",
-            "backgroundColor":  "rgb(200,200,200)",
-            
-            
+            "caption": [8594],
             "pos": {
                 "x": 3,
                 "y": 2
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        },
-        {
+        }, {
             "input": [65],
-            "caption": {
-                "encoding": "string",
-                "data":     "Pfand\naus"
-            },
-            "description": "Pfandauszahlung",
-            "backgroundColor":  "rgb(0,0,255)",
-            "textColor":       "rgb(255,255,255)",
-            
+            "backgroundColor": "rgb(0,0,255)",
+            "textColor": "rgb(255,255,255)",
+            "caption": "Pfand\naus",
             "pos": {
                 "x": 4,
                 "y": 2
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        },
-        {
+        }, {
             "input": [17,71],
-            "caption": {
-                "encoding": "string",
-                "data":     "KARTE"
-            },
-            "description": "Kartenzahlung",
-            "backgroundColor":  "rgb(0,255,0)",
-            
-            
+            "backgroundColor": "rgb(0,255,0)",
+            "caption": "KARTE",
             "pos": {
                 "x": 4,
                 "y": 3
@@ -206,131 +115,52 @@
                 "x": 2,
                 "y": 2
             }
-        },
-        {
+        }, {
             "input": [55],
-            "caption": {
-                "encoding": "string",
-                "data":     "7"
-            },
-            "description": "7",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "7",
             "pos": {
                 "x": 1,
                 "y": 4
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        },
-        {
+        }, {
             "input": [56],
-            "caption": {
-                "encoding": "string",
-                "data":     "8"
-            },
-            "description": "8",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "8",
             "pos": {
                 "x": 2,
                 "y": 4
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        },
-        {
+        }, {
             "input": [57],
-            "caption": {
-                "encoding": "string",
-                "data":     "9"
-            },
-            "description": "9",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "9",
             "pos": {
                 "x": 3,
                 "y": 4
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        },
-        {
+        }, {
             "input": [52],
-            "caption": {
-                "encoding": "string",
-                "data":     "4"
-            },
-            "description": "4",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "4",
             "pos": {
                 "x": 1,
                 "y": 5
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        },
-        {
+        }, {
             "input": [53],
-            "caption": {
-                "encoding": "string",
-                "data":     "5"
-            },
-            "description": "5",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "5",
             "pos": {
                 "x": 2,
                 "y": 5
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        },
-        {
+        }, {
             "input": [54],
-            "caption": {
-                "encoding": "string",
-                "data":     "6"
-            },
-            "description": "6",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "6",
             "pos": {
                 "x": 3,
                 "y": 5
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        },
-        {
+        }, {
             "input": [17,69],
-            "caption": {
-                "encoding": "string",
-                "data":     "BAR"
-            },
-            "description": "Barzahlung",
-            "backgroundColor":  "rgb(0,255,0)",
-            
-            
+            "backgroundColor": "rgb(0,255,0)",
+            "caption": "BAR",
             "pos": {
                 "x": 4,
                 "y": 5
@@ -339,132 +169,53 @@
                 "x": 2,
                 "y": 2
             }
-        },
-        {
+        }, {
             "input": [49],
-            "caption": {
-                "encoding": "string",
-                "data":     "1"
-            },
-            "description": "1",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "1",
             "pos": {
                 "x": 1,
                 "y": 6
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        },
-        {
+        }, {
             "input": [50],
-            "caption": {
-                "encoding": "string",
-                "data":     "2"
-            },
-            "description": "2",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "2",
             "pos": {
                 "x": 2,
                 "y": 6
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        },
-        {
+        }, {
             "input": [51],
-            "caption": {
-                "encoding": "string",
-                "data":     "3"
-            },
-            "description": "3",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "3",
             "pos": {
                 "x": 3,
                 "y": 6
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        },
-        {
+        }, {
             "input": [48],
-            "caption": {
-                "encoding": "string",
-                "data":     "0"
-            },
-            "description": "0",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "0",
             "pos": {
                 "x": 1,
                 "y": 7
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        },
-        {
+        }, {
             "input": [48],
-            "caption": {
-                "encoding": "string",
-                "data":     "00"
-            },
-            "description": "Doppelnull",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "00",
             "pos": {
                 "x": 2,
                 "y": 7
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        },
-        {
+        }, {
             "input": [17,70],
-            "caption": {
-                "encoding": "string",
-                "data":     "*"
-            },
-            "description": "Multiplikator",
-            "backgroundColor":  "FFFF00",
-            
-            
+            "backgroundColor": "rgb(255,255,0)",
+            "caption": "*",
             "pos": {
                 "x": 3,
                 "y": 7
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        },
-        {
+        }, {
             "input": [13],
-            "caption": {
-                "encoding": "unicode",
-                "data":     [8626]
-            },
             "fontSize": 26,
-            "description": "Enter / Return",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": [8626],
             "pos": {
                 "x": 4,
                 "y": 7
@@ -473,444 +224,173 @@
                 "x": 2,
                 "y": 1
             }
-        },
-        {
+        }, {
             "input": [65],
-            "caption": {
-                "encoding": "string",
-                "data":     "A"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "A",
             "pos": {
                 "x": 7,
-                "y": 1
-            },
-            "dimension": {
-                "x": 1,
                 "y": 1
             }
         }, {
             "input": [66],
-            "caption": {
-                "encoding": "string",
-                "data":     "B"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "B",
             "pos": {
                 "x": 8,
-                "y": 1
-            },
-            "dimension": {
-                "x": 1,
                 "y": 1
             }
         }, {
             "input": [67],
-            "caption": {
-                "encoding": "string",
-                "data":     "C"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "C",
             "pos": {
                 "x": 9,
-                "y": 1
-            },
-            "dimension": {
-                "x": 1,
                 "y": 1
             }
         }, {
             "input": [68],
-            "caption": {
-                "encoding": "string",
-                "data":     "D"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "D",
             "pos": {
                 "x": 10,
-                "y": 1
-            },
-            "dimension": {
-                "x": 1,
                 "y": 1
             }
         }, {
             "input": [69],
-            "caption": {
-                "encoding": "string",
-                "data":     "E"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "E",
             "pos": {
                 "x": 11,
-                "y": 1
-            },
-            "dimension": {
-                "x": 1,
                 "y": 1
             }
         }, {
             "input": [70],
-            "caption": {
-                "encoding": "string",
-                "data":     "F"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "F",
             "pos": {
                 "x": 12,
                 "y": 1
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        }
-
-        , {
+        }, {
             "input": [71],
-            "caption": {
-                "encoding": "string",
-                "data":     "G"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "G",
             "pos": {
                 "x": 7,
                 "y": 2
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
         }, {
             "input": [72],
-            "caption": {
-                "encoding": "string",
-                "data":     "H"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "H",
             "pos": {
                 "x": 8,
                 "y": 2
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
         }, {
             "input": [73],
-            "caption": {
-                "encoding": "string",
-                "data":     "I"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "I",
             "pos": {
                 "x": 9,
                 "y": 2
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
         }, {
             "input": [74],
-            "caption": {
-                "encoding": "string",
-                "data":     "J"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "J",
             "pos": {
                 "x": 10,
                 "y": 2
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
         }, {
             "input": [70],
-            "caption": {
-                "encoding": "string",
-                "data":     "F"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "F",
             "pos": {
                 "x": 11,
                 "y": 2
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
         }, {
             "input": [75],
-            "caption": {
-                "encoding": "string",
-                "data":     "K"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "K",
             "pos": {
                 "x": 12,
                 "y": 2
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        }
-
-        , {
+        }, {
             "input": [76],
-            "caption": {
-                "encoding": "string",
-                "data":     "L"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "L",
             "pos": {
                 "x": 7,
                 "y": 3
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
         }, {
             "input": [69],
-            "caption": {
-                "encoding": "string",
-                "data":     "E"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "E",
             "pos": {
                 "x": 8,
                 "y": 3
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
         }, {
             "input": [70],
-            "caption": {
-                "encoding": "string",
-                "data":     "F"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "F",
             "pos": {
                 "x": 9,
                 "y": 3
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
         }, {
             "input": [70],
-            "caption": {
-                "encoding": "string",
-                "data":     "F"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "F",
             "pos": {
                 "x": 10,
                 "y": 3
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
         }, {
             "input": [77],
-            "caption": {
-                "encoding": "string",
-                "data":     "M"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "M",
             "pos": {
                 "x": 11,
                 "y": 3
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
         }, {
             "input": [78],
-            "caption": {
-                "encoding": "string",
-                "data":     "N"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "N",
             "pos": {
                 "x": 12,
                 "y": 3
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
-        }
-
-        , {
+        }, {
             "input": [79],
-            "caption": {
-                "encoding": "string",
-                "data":     "O"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "O",
             "pos": {
                 "x": 7,
                 "y": 4
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
         }, {
             "input": [69],
-            "caption": {
-                "encoding": "string",
-                "data":     "E"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "E",
             "pos": {
                 "x": 8,
                 "y": 4
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
         }, {
             "input": [80],
-            "caption": {
-                "encoding": "string",
-                "data":     "P"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "P",
             "pos": {
                 "x": 9,
                 "y": 4
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
         }, {
             "input": [81],
-            "caption": {
-                "encoding": "string",
-                "data":     "Q"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "Q",
             "pos": {
                 "x": 10,
                 "y": 4
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
         }, {
             "input": [82],
-            "caption": {
-                "encoding": "string",
-                "data":     "R"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "R",
             "pos": {
                 "x": 11,
                 "y": 4
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
         }, {
             "input": [83],
-            "caption": {
-                "encoding": "string",
-                "data":     "S"
-            },
-            "description": "Buchstabe",
-            "backgroundColor":  "rgb(255,255,255)",
-            
-            
+            "caption": "S",
             "pos": {
                 "x": 12,
                 "y": 4
-            },
-            "dimension": {
-                "x": 1,
-                "y": 1
             }
         }
     ]

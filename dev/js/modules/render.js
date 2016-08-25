@@ -10,26 +10,34 @@
         canvas   = null,
         context  = null,
         defaultConfig = {
-            dimension       : { x : 1, y : 1 },
-            backgroundColor : 'rgb(255, 255, 255)',
-            borderColor     : 'rgb(0, 0, 0)',
-            textColor       : 'rgb(0, 0, 0)',
-            textAlign       : 'center',
-            font            : 'Arial',
-            rotation        : 0,
-            fontSize        : 14,
-            margin          : 2
+            keyboard : {
+                dimension : { x : 0, y : 0 }
+            },
+            defaults : {
+                backgroundColor : 'rgb(255, 255, 255)',
+                borderColor : 'rgb(0, 0, 0)',
+                dimension : {x : 1, y : 1},
+                font : 'Arial',
+                fontSize : 14,
+                margin : 2,
+                rotation : 0,
+                textAlign : 'center',
+                textColor : 'rgb(0, 0, 0)'
+            }
         },
-        _unitSize        = 50,
-        _dimension       = null,
-        _backgroundColor = null,
-        _borderColor     = null,
-        _textColor       = null,
-        _textAlign       = null,
-        _font            = null,
-        _rotation        = null,
-        _margin          = null,
-        _fontSize        = null;
+        unitSize = 50,
+        fallback = {
+            backgroundColor   : '',
+            borderColor       : '',
+            dimension         : {},
+            font              : '',
+            fontSize          : 0,
+            keyboardDimension : {},
+            margin            : 0,
+            rotation          : 0,
+            textAlign         : '',
+            textColor         : ''
+        };
 
     // ------------------------------------------------------------------------------------------------ Module interface
 
@@ -69,19 +77,23 @@
     function update(config) {
         var cfg  = merge(defaultConfig, config);
 
-        _dimension = {
+        fallback.keyboardDimension = {
             x : Number(cfg.keyboard.dimension.x),
             y : Number(cfg.keyboard.dimension.y)
         };
-        _backgroundColor = cfg.keyboard.backgroundColor;
-        _borderColor     = cfg.keyboard.borderColor;
-        _textColor       = cfg.keyboard.textColor;
-        _textAlign       = cfg.keyboard.textAlign;
-        _font            = cfg.keyboard.font;
-        _margin          = cfg.keyboard.margin;
-        _fontSize        = cfg.keyboard.fontSize;
+        fallback.dimension = {
+            x : Number(cfg.defaults.dimension.x),
+            y : Number(cfg.defaults.dimension.y)
+        };
+        fallback.backgroundColor = cfg.defaults.backgroundColor;
+        fallback.borderColor     = cfg.defaults.borderColor;
+        fallback.font            = cfg.defaults.font;
+        fallback.fontSize        = cfg.defaults.fontSize;
+        fallback.margin          = cfg.defaults.margin;
+        fallback.textAlign       = cfg.defaults.textAlign;
+        fallback.textColor       = cfg.defaults.textColor;
 
-        canvas.style.background = _backgroundColor;
+        canvas.style.background = fallback.backgroundColor;
         resizeStage();
         renderKeys(cfg.keys);
     }
@@ -97,8 +109,8 @@
      */
     function getStageSize(keyAmountX, keyAmountY) {
         return {
-            width  : _unitSize * keyAmountX,
-            height : _unitSize * keyAmountY
+            width  : unitSize * keyAmountX,
+            height : unitSize * keyAmountY
         };
     }
 
@@ -107,7 +119,7 @@
      * Resize the stage width the given width and height.
      */
     function resizeStage() {
-        var size = getStageSize(_dimension.x, _dimension.y);
+        var size = getStageSize(fallback.keyboardDimension.x, fallback.keyboardDimension.y);
 
         canvas.width        = size.width;
         canvas.height       = size.height;
@@ -138,89 +150,95 @@
      * @param {Object} key      - Key-Object
      */
     function drawKey(key) {
-        var start = {
-                x : (Number((key.pos.x) - 1) * _unitSize) + _margin,
-                y : (Number((key.pos.y) - 1) * _unitSize) + _margin
-            },
-            end = {
-                x : (start.x + (Number(key.dimension.x) * _unitSize) - (2 * _margin)),
-                y : (start.y + (Number(key.dimension.y) * _unitSize) - (2 * _margin))
-            },
-            center = {
-                x : (start.x + ((end.x - start.x) / 2)),
-                y : (start.y + ((end.y - start.y) / 2))
-            },
-            fontSize  = ((key.fontSize)  ? key.fontSize : _fontSize),
-            textColor = ((key.textColor) ? key.textColor: _textColor);
+        var start, end, center,
+            backgroundColor = ((key.backgroundColor) ? key.backgroundColor : fallback.backgroundColor),
+            borderColor     = ((key.borderColor)     ? key.borderColor     : fallback.borderColor),
+            dimension       = ((key.dimension)       ? key.dimension       : fallback.dimension),
+            font            = ((key.font)            ? key.font            : fallback.font),
+            fontSize        = ((key.fontSize)        ? key.fontSize        : fallback.fontSize),
+            margin          = ((key.margin)          ? key.margin          : fallback.margin),
+            textAlign       = ((key.textAlign)       ? key.textAlign       : fallback.textAlign),
+            textColor       = ((key.textColor)       ? key.textColor       : fallback.textColor),
+            rotation        = ((key.rotation)        ? key.rotation        : fallback.rotation);
 
-        // Key frame and colors
-        context.save();
-        context.fillStyle   = '#' + key.background;
-        context.strokeStyle = '#000000';
-        context.beginPath();
-            context.moveTo(start.x, start.y);
-            context.lineTo(end.x, start.y);
-            context.lineTo(end.x, end.y);
-            context.lineTo(start.x, end.y);
-        context.closePath();
-        context.stroke();
-        context.fill();
-        context.restore();
+        start = {
+            x : (Number((key.pos.x) - 1) * unitSize) + margin,
+            y : (Number((key.pos.y) - 1) * unitSize) + margin
+        };
+        end = {
+            x : (start.x + (Number(dimension.x) * unitSize) - (2 * margin)),
+            y : (start.y + (Number(dimension.y) * unitSize) - (2 * margin))
+        };
+        center = {
+            x : (start.x + ((end.x - start.x) / 2)),
+            y : (start.y + ((end.y - start.y) / 2))
+        };
 
-
-        context.save();
-        context.textAlign = (key.textAlign) ? key.textAlign : _textAlign;
-
-        if (key.caption.encoding.toLowerCase() === 'string') {
-            drawString(context, key.caption.data, center.x, center.y, textColor, key.rotation, _font, fontSize);
-        }
-        else if (key.caption.encoding.toLowerCase() == 'unicode') {
-            context.translate(center.x, center.y);
-            context.rotate(key.rotation * Math.PI / 180);
-            context.fillStyle = '#' + key.backgroundColor;
-            context.font      = _font + ' ' + fontSize + 'px';
-
-            var tmp = '';
-            for (var j = 0 ; j < key.caption.data.length; j++) {
-                if (tmp != '') { tmp += ',' }
-                tmp += key.caption.data[j];
-            }
-            context.fillText(String.fromCharCode(tmp), 0,0);
-        }
-            context.restore();
+        drawKeyFrame(context, start, end, backgroundColor, borderColor);
+        drawCaption(context, key.caption, center.x, center.y, textColor, textAlign, rotation, font, fontSize);
     }
 
 
-    /*
-     * Draws a multiline string rotated in a canvas
+    function drawKeyFrame(ctx, startPos, endPos, backgroundColor, borderColor) {
+        ctx.save();
+
+        ctx.fillStyle   = backgroundColor;
+        ctx.strokeStyle = borderColor;
+
+        ctx.beginPath();
+        ctx.moveTo(startPos.x, startPos.y);
+        ctx.lineTo(endPos.x,   startPos.y);
+        ctx.lineTo(endPos.x,   endPos.y);
+        ctx.lineTo(startPos.x, endPos.y);
+        ctx.closePath();
+
+        ctx.stroke();
+        ctx.fill();
+        ctx.restore();
+    }
+
+
+    /**
      *
-     * @param ctx (M) context of the canvas
-     * @param text (M) string may contain \n
-     * @param posX (M) horizontal start position
-     * @param posY (M) vertical start position
-     * @param textColor color
-     * @param rotation in degrees (by 360)
-     * @param font must be installed on client use websafe
-     * @param fonSize in Pixels
+     * @param ctx
+     * @param caption
+     * @param posX
+     * @param posY
+     * @param textColor
+     * @param textAlign
+     * @param rotation
+     * @param font
+     * @param fontSize
      */
-    function drawString(ctx, text, posX, posY, textColor, rotation, font, fontSize) {
-        var i, lines = text.split("\n");
+    function drawCaption(ctx, caption, posX, posY, textColor, textAlign, rotation, font, fontSize) {
+        var lines, i, tmp = '';
 
-        if (!rotation)  rotation  = 0;
-        if (!font)      font      = "'serif'";
-        if (!fontSize)  fontSize  = 14;
-        if (!textColor) textColor = '#000000';
+        ctx.save();
 
-        ctx.font      = font + ' ' + fontSize + 'px';
-        console.log(font + ' ' + fontSize + 'px');
+        ctx.font      = fontSize + 'px ' + font;
         ctx.fillStyle = textColor;
+        ctx.textAlign = textAlign;
 
         ctx.translate(posX, posY);
         ctx.rotate(rotation * Math.PI / 180);
 
-        for (i = 0; i < lines.length; i++) {
-            ctx.fillText(lines[i], 0, (i * fontSize));
+        if (typeof caption === 'string') {
+            lines = caption.split("\n");
+
+            for (i = 0; i < lines.length; i++) {
+                ctx.fillText(lines[i], 0, (i * fontSize));
+            }
         }
+        else if (typeof caption === 'object') {
+            for (i = 0 ; i < caption.length; i++) {
+                if (tmp != '') { tmp += ',' }
+                tmp += caption[i];
+            }
+
+            context.fillText(String.fromCharCode(tmp), 0,0);
+        }
+
+        ctx.restore();
     }
 
     // --------------------------------------------------------------------------------------------------------- Returns

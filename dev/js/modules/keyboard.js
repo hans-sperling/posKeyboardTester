@@ -7,17 +7,17 @@
     // ------------------------------------------------------------------------------------------------------ Properties
 
     // App internals
-    var merge = app.getModule('merge');
+    var merge = app.getModule('merge').deep;
 
     // Module internals
     var defaultConfig = {
-            keyboard : {
+            keyboard: {
                 dimension : { x : 0, y : 0}
             },
-            keys      : []
+            keys : []
         },
         dimension = { x : 0, y : 0},
-        keys      = [];
+        keys = [];
 
 
     // ------------------------------------------------------------------------------------------------ Module interface
@@ -53,10 +53,14 @@
      * @return {void}
      */
     function update(config) {
-        var cfg = merge.deep(defaultConfig, config);
+        var cfg = merge(defaultConfig, config);
 
-        dimension = cfg.keyboard.dimension;
+        dimension = {
+            x : Number(cfg.keyboard.dimension.x),
+            y : Number(cfg.keyboard.dimension.y)
+        };
         keys      = cfg.keys;
+
     }
 
     // --------------------------------------------------------------------------------------------------------- Methods

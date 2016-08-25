@@ -43,7 +43,7 @@
         $toggleButton.on('click', function(e2) {
             e2.preventDefault();
 
-            //isTesting = !isTesting;
+            isTesting = !isTesting;
 
 
             if ($toggleButton.hasClass('active')) {
