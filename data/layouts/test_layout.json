@@ -16,8 +16,9 @@
         "textAlign": "center",
         "rotation": 0,
         "font": "Consolas",
-        "fontSize": 14,
-        "margin": 2
+        "fontSize": 16,
+        "margin": 2,
+        "stageReferenceWidth": 600
     },
     "keys": [
         {
@@ -55,7 +56,7 @@
                 "y": 1
             }
         }, {
-            "input": [80, 17],
+            "input": [17,80],
             "backgroundColor": "rgb(200,200,200)",
             "rotation": -90,
             "caption": "BON",

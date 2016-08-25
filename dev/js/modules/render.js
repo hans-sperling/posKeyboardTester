@@ -18,25 +18,27 @@
                 borderColor : 'rgb(0, 0, 0)',
                 dimension : {x : 1, y : 1},
                 font : 'Arial',
-                fontSize : 14,
+                fontSize : 16,
                 margin : 2,
                 rotation : 0,
+                stageReferenceWidth : 600,
                 textAlign : 'center',
                 textColor : 'rgb(0, 0, 0)'
             }
         },
         unitSize = 50,
         fallback = {
-            backgroundColor   : '',
-            borderColor       : '',
-            dimension         : {},
-            font              : '',
-            fontSize          : 0,
-            keyboardDimension : {},
-            margin            : 0,
-            rotation          : 0,
-            textAlign         : '',
-            textColor         : ''
+            backgroundColor     : '',
+            borderColor         : '',
+            dimension           : {},
+            font                : '',
+            fontSize            : 0,
+            keyboardDimension   : {},
+            margin              : 0,
+            rotation            : 0,
+            stageReferenceWidth : 0,
+            textAlign           : '',
+            textColor           : ''
         };
 
     // ------------------------------------------------------------------------------------------------ Module interface
@@ -88,16 +90,17 @@
             x : Number(cfg.defaults.dimension.x),
             y : Number(cfg.defaults.dimension.y)
         };
-        fallback.backgroundColor = cfg.defaults.backgroundColor;
-        fallback.borderColor     = cfg.defaults.borderColor;
-        fallback.font            = cfg.defaults.font;
-        fallback.fontSize        = cfg.defaults.fontSize;
-        fallback.margin          = cfg.defaults.margin;
-        fallback.textAlign       = cfg.defaults.textAlign;
-        fallback.textColor       = cfg.defaults.textColor;
+        fallback.backgroundColor     = cfg.defaults.backgroundColor;
+        fallback.borderColor         = cfg.defaults.borderColor;
+        fallback.font                = cfg.defaults.font;
+        fallback.fontSize            = cfg.defaults.fontSize;
+        fallback.margin              = cfg.defaults.margin;
+        fallback.stageReferenceWidth = cfg.defaults.stageReferenceWidth;
+        fallback.textAlign           = cfg.defaults.textAlign;
+        fallback.textColor           = cfg.defaults.textColor;
 
-        unitSize                 = Math.min((width  / fallback.keyboardDimension.x), (height / fallback.keyboardDimension.y));
-        canvas.style.background  = fallback.backgroundColor;
+        unitSize                = Math.min((width  / fallback.keyboardDimension.x), (height / fallback.keyboardDimension.y));
+        canvas.style.background = fallback.backgroundColor;
 
         resizeStage();
         renderKeys(cfg.keys);
@@ -149,6 +152,11 @@
     }
 
 
+    function getSizeByRatio(size) {
+        return ((canvas.width * (size / fallback.stageReferenceWidth))|0);
+    }
+
+
     /**
      * Draws a given key of the keyboard with all its properties.
      *
@@ -166,6 +174,11 @@
             textColor       = ((key.textColor)       ? key.textColor       : fallback.textColor),
             rotation        = ((key.rotation)        ? key.rotation        : fallback.rotation);
 
+        // Resize variable sizes
+        fontSize = getSizeByRatio(fontSize);
+        margin   = getSizeByRatio(margin);
+
+        // Positioning
         start = {
             x : (Number((key.pos.x) - 1) * unitSize) + margin,
             y : (Number((key.pos.y) - 1) * unitSize) + margin
@@ -179,6 +192,7 @@
             y : (start.y + ((end.y - start.y) / 2))
         };
 
+        // Draw
         drawKeyFrame(context, start, end, backgroundColor, borderColor);
         drawCaption(context, key.caption, center.x, center.y, textColor, textAlign, rotation, font, fontSize);
     }
