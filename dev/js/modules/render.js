@@ -75,7 +75,10 @@
      * @return {void}
      */
     function update(config) {
-        var cfg  = merge(defaultConfig, config);
+        var cfg                 = merge(defaultConfig, config),
+            $applicationWrapper = $('.application-wrapper'),
+            width               = $applicationWrapper.width(),
+            height              = $applicationWrapper.height();
 
         fallback.keyboardDimension = {
             x : Number(cfg.keyboard.dimension.x),
@@ -93,7 +96,9 @@
         fallback.textAlign       = cfg.defaults.textAlign;
         fallback.textColor       = cfg.defaults.textColor;
 
-        canvas.style.background = fallback.backgroundColor;
+        unitSize                 = Math.min((width  / fallback.keyboardDimension.x), (height / fallback.keyboardDimension.y));
+        canvas.style.background  = fallback.backgroundColor;
+
         resizeStage();
         renderKeys(cfg.keys);
     }
@@ -197,6 +202,7 @@
         ctx.restore();
     }
 
+    // todo - How to resize the font size depended on the size of the key?
 
     /**
      *
