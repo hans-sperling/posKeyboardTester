@@ -139,7 +139,7 @@
     /**
      * Renders all keys of the keyboard.
      *
-     * @param  {Array}  keys     - List of all keys
+     * @param {Array} keys - List of all keys
      */
     function renderKeys(keys) {
         var i;
@@ -152,6 +152,12 @@
     }
 
 
+    /**
+     * Returns the given size by ratio.
+     *
+     * @param {Number} size
+     * @returns {Number}
+     */
     function getSizeByRatio(size) {
         return ((canvas.width * (size / fallback.stageReferenceWidth))|0);
     }
@@ -160,7 +166,7 @@
     /**
      * Draws a given key of the keyboard with all its properties.
      *
-     * @param {Object} key      - Key-Object
+     * @param {Object} key - Key-Object
      */
     function drawKey(key) {
         var start, end, center,
@@ -198,17 +204,26 @@
     }
 
 
-    function drawKeyFrame(ctx, startPos, endPos, backgroundColor, borderColor) {
+    /**
+     * Draws a cubic frame by absolute coordinates.
+     *
+     * @param {CanvasRenderingContext2D} ctx
+     * @param {Object} topLeftPos - Top left xy position object
+     * @param {Object} bottomRightPos - Bottom right xy position object
+     * @param {String} backgroundColor - Color of the background i.e. HEX or RGBA
+     * @param {String} borderColor - Color of the border i.e. HEX or RGBA
+     */
+    function drawKeyFrame(ctx, topLeftPos, bottomRightPos, backgroundColor, borderColor) {
         ctx.save();
 
         ctx.fillStyle   = backgroundColor;
         ctx.strokeStyle = borderColor;
 
         ctx.beginPath();
-        ctx.moveTo(startPos.x, startPos.y);
-        ctx.lineTo(endPos.x,   startPos.y);
-        ctx.lineTo(endPos.x,   endPos.y);
-        ctx.lineTo(startPos.x, endPos.y);
+        ctx.moveTo(topLeftPos.x,     topLeftPos.y);
+        ctx.lineTo(bottomRightPos.x, topLeftPos.y);
+        ctx.lineTo(bottomRightPos.x, bottomRightPos.y);
+        ctx.lineTo(topLeftPos.x,     bottomRightPos.y);
         ctx.closePath();
 
         ctx.stroke();
@@ -216,19 +231,19 @@
         ctx.restore();
     }
 
-    // todo - How to resize the font size depended on the size of the key?
 
     /**
+     * Draws text in the canvas and splits by '\n' and draws unicode signs.
      *
-     * @param ctx
-     * @param caption
-     * @param posX
-     * @param posY
-     * @param textColor
-     * @param textAlign
-     * @param rotation
-     * @param font
-     * @param fontSize
+     * @param {CanvasRenderingContext2D} ctx
+     * @param {String|Array} caption - Text, will be multiline by splitting on '\n'
+     * @param {Number} posX - Point of the rendering center on x axis
+     * @param {Number} posY - Point of the rendering center on y axis
+     * @param {string} textColor - Color of the text i.e. HEX or RGBA
+     * @param {String} textAlign - Align of the text
+     * @param {Number} rotation - Degrees of the rotation
+     * @param {String} font - Font name
+     * @param {Number} fontSize - Size of the font
      */
     function drawCaption(ctx, caption, posX, posY, textColor, textAlign, rotation, font, fontSize) {
         var lines, i, tmp = '';
@@ -255,7 +270,7 @@
                 tmp += caption[i];
             }
 
-            context.fillText(String.fromCharCode(tmp), 0,0);
+            ctx.fillText(String.fromCharCode(tmp), 0,0);
         }
 
         ctx.restore();

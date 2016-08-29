@@ -6,10 +6,13 @@
 
     // ------------------------------------------------------------------------------------------------------ Properties
 
-    var keyIndexes = [],
-        isTesting  = false,
-        keyCounter = 0,
-        keyStrokes = [];
+    var keyIndexes    = [],
+        isTesting     = false,
+        isPaused      = false,
+        keyCounter    = 0,
+        keyStrokes    = [],
+        $toggleButton = null,
+        $layout       = null;
 
     // ------------------------------------------------------------------------------------------------ Module interface
 
@@ -32,42 +35,82 @@
      * @return {void}
      */
     function run() {
-        var $toggleButton = $('#ToggleTest'),
-            $layout       = $('#Layout');
+        $toggleButton = $('#ToggleTest');
+        $layout       = $('#Layout');
 
         $layout.on('change', function(e1) {
             // ...
         });
 
+        addInteractionEvents();
 
-        $toggleButton.on('click', function(e2) {
+    }
+
+
+    /**
+     * Updates this module, will be called on init and on general updating the app.
+     *
+     * @public
+     * @param  {Object} config
+     * @return {void}
+     */
+    function update(config) {
+        // Nothing to do yet
+    }
+
+    // --------------------------------------------------------------------------------------------------------- Methods
+
+    /**
+     *
+     */
+    function addInteractionEvents() {
+        $toggleButton.on('click.testing', function(e2) {
             e2.preventDefault();
 
-            isTesting = !isTesting;
+            if (!isTesting && !isPaused) {
+                isTesting = true;
+                isPaused  = false;
 
-
-            if ($toggleButton.hasClass('active')) {
-                $toggleButton.removeClass('active')
-                             .removeClass('paused')
-                             .html('Start test');
+                $toggleButton
+                    .addClass('active')
+                    .removeClass('paused')
+                    .html('Stop testing');
             }
-            else {
-                $toggleButton.html('Testing ...')
-                             .removeClass('paused')
-                              .addClass('active');
+            else if (isTesting && !isPaused) {
+                isTesting = false;
+                isPaused  = false;
 
-                // Test starts
-                keyIndexes = app.getModule('keyboard').getSortedKeyIndexes();
+                $toggleButton
+                    .removeClass('active')
+                    .removeClass('paused')
+                    .html('Start test');
+            }
+            else if (isTesting && isPaused) {
+                isTesting = true;
+                isPaused  = false;
+
+                $toggleButton
+                    .addClass('active')
+                    .removeClass('paused')
+                    .html('Stop testing');
+            }
+
+            // Test starts
+            keyIndexes = app.getModule('keyboard').getSortedKeyIndexes();
+        });
+
+        $toggleButton.on('blur.testing', function(e) {
+            if (isTesting) {
+                isPaused = true;
+
+                $toggleButton
+                    .removeClass('active')
+                    .addClass('paused')
+                    .html('Paused...');
             }
         });
 
-        $toggleButton.on('blur', function(e) {
-            $toggleButton.removeClass('active')
-                         .addClass('paused')
-                         .html('Paused...');
-        });
-
-        $toggleButton.on('keydown', function(e) {
+        $toggleButton.on('keydown.testing', function(e) {
             e.preventDefault();
             var key = e.which || e.keyCode || e.charCode;
             e       = e || window.e;
@@ -76,7 +119,7 @@
             keyStrokes.push(key);
         });
 
-        $toggleButton.on("keyup", function(event) {
+        $toggleButton.on('keyup.testing', function(event) {
             event.preventDefault();
             var key = event.which || event.keyCode || event.charCode;
             event   = event || window.event;
@@ -94,18 +137,9 @@
 
 
     /**
-     * Updates this module, will be called on init and on general updating the app.
      *
-     * @public
-     * @param  {Object} config
-     * @return {void}
+     * @param pressedKey
      */
-    function update(config) {
-        // Nothing to do yet
-    }
-
-    // --------------------------------------------------------------------------------------------------------- Methods
-
     function pressedKeyExists(pressedKey) {
         for (var i in keyIndexes) {
             if (keyIndexes.hasOwnProperty(i)) {

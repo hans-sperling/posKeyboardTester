@@ -91,10 +91,10 @@ body {
   .content .application-wrapper {
     position: relative;
     margin: 0 auto;
-    width: 600px;
-    height: 350px;
     width: 100%;
     height: 100%;
+    width: 600px;
+    height: 350px;
     overflow: hidden; }
     .content .application-wrapper #Stage {
       position: relative;
