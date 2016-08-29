@@ -83,7 +83,8 @@
                 $toggleButton
                     .removeClass('active')
                     .removeClass('paused')
-                    .html('Start test');
+                    .html('Start test')
+                    .blur();
             }
             else if (isTesting && isPaused) {
                 isTesting = true;

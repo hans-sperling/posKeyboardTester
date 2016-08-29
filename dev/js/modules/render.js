@@ -99,7 +99,7 @@
         fallback.textAlign           = cfg.defaults.textAlign;
         fallback.textColor           = cfg.defaults.textColor;
 
-        unitSize                = Math.min((width  / fallback.keyboardDimension.x), (height / fallback.keyboardDimension.y));
+        unitSize                = Math.min((width / fallback.keyboardDimension.x), (height / fallback.keyboardDimension.y));
         canvas.style.background = fallback.backgroundColor;
 
         resizeStage();
