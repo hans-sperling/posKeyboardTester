@@ -75,9 +75,19 @@
                 result.push([sortedKeys.join('-'), i]);
             }
         }
-
         return result;
     }
+
+
+    function getKey(index) {
+        if (keys.hasOwnProperty(index)) {
+            return keys[index];
+        }
+        else {
+            return false;
+        }
+    }
+
 
     // --------------------------------------------------------------------------------------------------------- Returns
 
@@ -87,6 +97,7 @@
         run       : run,
         update    : update,
 
-        getSortedKeyIndexes : getSortedKeyIndexes
+        getSortedKeyIndexes : getSortedKeyIndexes,
+        getKey              : getKey
     }});
 })(window[APPKEY]);

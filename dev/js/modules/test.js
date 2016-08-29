@@ -6,7 +6,9 @@
 
     // ------------------------------------------------------------------------------------------------------ Properties
 
-    var keyIndexes    = [],
+    var render        = null,
+        keyboard      = null,
+        keyIndexes    = [],
         isTesting     = false,
         isPaused      = false,
         keyCounter    = 0,
@@ -35,6 +37,7 @@
      * @return {void}
      */
     function run() {
+        render = app.getModule('render');
         $toggleButton = $('#ToggleTest');
         $layout       = $('#Layout');
 
@@ -97,7 +100,8 @@
             }
 
             // Test starts
-            keyIndexes = app.getModule('keyboard').getSortedKeyIndexes();
+            keyboard  = app.getModule('keyboard');
+            keyIndexes = keyboard.getSortedKeyIndexes();
         });
 
         $toggleButton.on('blur.testing', function(e) {
@@ -122,15 +126,21 @@
 
         $toggleButton.on('keyup.testing', function(event) {
             event.preventDefault();
-            var key = event.which || event.keyCode || event.charCode;
+            var indexString = '',
+                key = event.which || event.keyCode || event.charCode;
             event   = event || window.event;
 
             setTimeout(function() {
                 keyCounter--;
                 if (keyCounter == 0) {
-                    pressedKeyExists(keyStrokes);
-                    console.log('KeyPressed', keyStrokes);
+                    indexString = pressedKeyExists(keyStrokes);
+
+                    var key = keyboard.getKey(indexString);
+                    
+                    render.removeKey(key);
                     keyStrokes = [];
+
+                    return indexString;
                 }
             }, 30);
         });
@@ -139,16 +149,22 @@
 
     /**
      *
-     * @param pressedKey
+     * @param {Array} pressedKeys
      */
-    function pressedKeyExists(pressedKey) {
+    function pressedKeyExists(pressedKeys) {
+        var strokeString = '';
+
         for (var i in keyIndexes) {
             if (keyIndexes.hasOwnProperty(i)) {
-                if (keyIndexes[i][0] == pressedKey.sort().join('-')) {
-                    console.log('ja')
+                strokeString = pressedKeys.sort().join('-');
+
+                if (keyIndexes[i][0] == strokeString) {
+
+                    return i;
                 }
             }
         }
+        return -1;
     }
 
     // --------------------------------------------------------------------------------------------------------- Returns

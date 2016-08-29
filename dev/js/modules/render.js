@@ -204,6 +204,35 @@
     }
 
 
+    function removeKey(key) {
+        var start, end, center,
+            backgroundColor = fallback.backgroundColor,
+            borderColor     = fallback.backgroundColor,
+            dimension       = ((key.dimension)       ? key.dimension       : fallback.dimension),
+            margin          = ((key.margin)          ? key.margin          : fallback.margin);
+
+        // Resize variable sizes
+        margin   = getSizeByRatio(margin);
+
+        // Positioning
+        start = {
+            x : (Number((key.pos.x) - 1) * unitSize),
+            y : (Number((key.pos.y) - 1) * unitSize)
+        };
+        end = {
+            x : (start.x + (Number(dimension.x) * unitSize)),
+            y : (start.y + (Number(dimension.y) * unitSize))
+        };
+        center = {
+            x : (start.x + ((end.x - start.x) / 2)),
+            y : (start.y + ((end.y - start.y) / 2))
+        };
+
+        // Draw / Remove
+        drawKeyFrame(context, start, end, backgroundColor, borderColor);
+    }
+
+
     /**
      * Draws a cubic frame by absolute coordinates.
      *
@@ -282,6 +311,8 @@
     app.appendModule({ render : {
         init      : init,
         run       : run,
-        update    : update
+        update    : update,
+
+        removeKey: removeKey
     }});
 })(window[APPKEY]);
