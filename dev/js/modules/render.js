@@ -30,6 +30,7 @@
         fallback = {
             backgroundColor     : '',
             borderColor         : '',
+            strokedColor        : '',
             dimension           : {},
             font                : '',
             fontSize            : 0,
@@ -92,6 +93,7 @@
         };
         fallback.backgroundColor     = cfg.defaults.backgroundColor;
         fallback.borderColor         = cfg.defaults.borderColor;
+        fallback.strokedColor        = cfg.defaults.strokedColor;
         fallback.font                = cfg.defaults.font;
         fallback.fontSize            = cfg.defaults.fontSize;
         fallback.margin              = cfg.defaults.margin;
@@ -206,8 +208,8 @@
 
     function removeKey(key) {
         var start, end, center,
-            backgroundColor = fallback.backgroundColor,
-            borderColor     = fallback.backgroundColor,
+            backgroundColor = fallback.strokedColor,
+            borderColor     = fallback.strokedColor,
             dimension       = ((key.dimension)       ? key.dimension       : fallback.dimension),
             margin          = ((key.margin)          ? key.margin          : fallback.margin);
 

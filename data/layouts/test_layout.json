@@ -8,6 +8,7 @@
     "defaults": {
         "backgroundColor": "rgb(255,255,255)",
         "borderColor": "rgb(0,0,0)",
+        "strokedColor": "rgba(255,255,255,0.9)",
         "dimension": {
             "x": 1,
             "y": 1

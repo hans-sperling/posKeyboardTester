@@ -116,33 +116,44 @@
         });
 
         $toggleButton.on('keydown.testing', function(e) {
+            e = e || window.e;
             e.preventDefault();
-            var key = e.which || e.keyCode || e.charCode;
-            e       = e || window.e;
 
-            keyCounter++;
-            keyStrokes.push(key);
+            var isNewKey = true,
+                key      = e.which || e.keyCode || e.charCode;
+
+            for (var i in keyStrokes) {
+                if (keyStrokes.hasOwnProperty(i) && keyStrokes[i] == key) {
+                    isNewKey = false;
+                    break;
+                }
+            }
+
+            if (isNewKey) {
+                keyStrokes.push(key);
+            }
         });
 
-        $toggleButton.on('keyup.testing', function(event) {
-            event.preventDefault();
-            var indexString = '',
-                key = event.which || event.keyCode || event.charCode;
-            event   = event || window.event;
+        $toggleButton.on('keyup.testing', function(e) {
+            e = e || window.e;
+            e.preventDefault();
 
-            setTimeout(function() {
-                keyCounter--;
-                if (keyCounter == 0) {
-                    indexString = pressedKeyExists(keyStrokes);
+            var indexString = pressedKeyExists(keyStrokes),
+                keyConfig   = {},
+                key         = e.which || e.keyCode || e.charCode;
 
-                    var key = keyboard.getKey(indexString);
-                    
-                    render.removeKey(key);
-                    keyStrokes = [];
+            if (key >= 0) {
+                keyConfig = keyboard.getKey(indexString);
 
-                    return indexString;
+                // @todo - To prevent hiding the key twice or more, it is necessary to create a list of all pressed keys
+                if (keyConfig) {
+                    render.removeKey(keyConfig);
                 }
-            }, 30);
+
+                keyStrokes = [];
+            }
+
+            return indexString;
         });
     }
 
@@ -171,8 +182,8 @@
 
     // Append module with public methods and properties
     app.appendModule({ test : {
-        init      : init,
-        run       : run,
-        update    : update
+        init   : init,
+        run    : run,
+        update : update
     }});
 })(window[APPKEY]);
