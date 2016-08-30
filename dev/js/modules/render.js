@@ -207,14 +207,11 @@
 
 
     function removeKey(key) {
-        var start, end, center,
+        var start, end,
             backgroundColor = fallback.strokedColor,
             borderColor     = fallback.strokedColor,
-            dimension       = ((key.dimension)       ? key.dimension       : fallback.dimension),
-            margin          = ((key.margin)          ? key.margin          : fallback.margin);
+            dimension       = ((key.dimension)       ? key.dimension       : fallback.dimension);
 
-        // Resize variable sizes
-        margin   = getSizeByRatio(margin);
 
         // Positioning
         start = {
@@ -224,10 +221,6 @@
         end = {
             x : (start.x + (Number(dimension.x) * unitSize)),
             y : (start.y + (Number(dimension.y) * unitSize))
-        };
-        center = {
-            x : (start.x + ((end.x - start.x) / 2)),
-            y : (start.y + ((end.y - start.y) / 2))
         };
 
         // Draw / Remove

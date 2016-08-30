@@ -11,7 +11,6 @@
         keyIndexes    = [],
         isTesting     = false,
         isPaused      = false,
-        keyCounter    = 0,
         keyStrokes    = [],
         $toggleButton = null,
         $layout       = null;
@@ -104,7 +103,7 @@
             keyIndexes = keyboard.getSortedKeyIndexes();
         });
 
-        $toggleButton.on('blur.testing', function(e) {
+        $toggleButton.on('blur.testing', function() {
             if (isTesting) {
                 isPaused = true;
 
