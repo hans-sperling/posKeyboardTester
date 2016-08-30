@@ -12,6 +12,7 @@
         isTesting     = false,
         isPaused      = false,
         keyStrokes    = [],
+        strokedKeys   = [],
         $toggleButton = null,
         $layout       = null;
 
@@ -36,7 +37,7 @@
      * @return {void}
      */
     function run() {
-        render = app.getModule('render');
+        render        = app.getModule('render');
         $toggleButton = $('#ToggleTest');
         $layout       = $('#Layout');
 
@@ -66,8 +67,12 @@
      *
      */
     function addInteractionEvents() {
-        $toggleButton.on('click.testing', function(e2) {
-            e2.preventDefault();
+        $toggleButton.on('click.testing', function(e) {
+            e.preventDefault();
+
+            // Test starts
+            keyboard  = app.getModule('keyboard');
+            keyIndexes = keyboard.getSortedKeyIndexes();
 
             if (!isTesting && !isPaused) {
                 isTesting = true;
@@ -97,10 +102,6 @@
                     .removeClass('paused')
                     .html('Stop testing');
             }
-
-            // Test starts
-            keyboard  = app.getModule('keyboard');
-            keyIndexes = keyboard.getSortedKeyIndexes();
         });
 
         $toggleButton.on('blur.testing', function() {
