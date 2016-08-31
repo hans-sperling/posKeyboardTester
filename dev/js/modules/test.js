@@ -75,7 +75,6 @@
             keyboard   = app.getModule('keyboard');
             keyIndexes = keyboard.getSortedKeyIndexes();
 
-
             if (!isTesting && !isPaused) {
                 isTesting = true;
                 isPaused  = false;

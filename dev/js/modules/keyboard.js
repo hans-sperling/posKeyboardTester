@@ -65,6 +65,11 @@
 
     // --------------------------------------------------------------------------------------------------------- Methods
 
+    /**
+     * Returns all keys, input sorted as string and split by minus-char with their index location in the keys-list.
+     *
+     * @returns {Array}
+     */
     function getSortedKeyIndexes() {
         var i, result = [];
 
@@ -84,6 +89,12 @@
     }
 
 
+    /**
+     * Returns the key object at the given index location or false if the index dose not exists.
+     *
+     * @param   {Number} index - Index location in the keys-list
+     * @returns {Boolean|Object}
+     */
     function getKeyByIndex(index) {
         if (keys.hasOwnProperty(index)) {
             return keys[index];
@@ -93,15 +104,22 @@
     }
 
 
+    /**
+     * Returns the key object at the given position from the keyboard layout or false if the index dose not exists.
+     *
+     * @param   {Object} position - XY-Position-Object
+     * @returns {Boolean|Object}
+     */
     function getKeyByPosition(position) {
         var i, key;
 
         for (i in keys) {
             if (keys.hasOwnProperty(i)) {
                 key = keys[i];
+
                 if (   (isObject(key.pos))
-                    && (isObject(key.pos.x) && key.pos.x == position.x)
-                    && (isObject(key.pos.y) && key.pos.x == position.x)) {
+                    && (key.pos.x == position.x)
+                    && (key.pos.y == position.y)) {
 
                     return key;
                 }
@@ -112,6 +130,12 @@
     }
 
 
+    /**
+     * Returns the key objects with the same input as the given keystroke or false if the index dose not exists.
+     *
+     * @param   {Array} keyStroke - List of inputs
+     * @returns {Boolean|Object}
+     */
     function getKeysByKeystroke(keyStroke) {
         var i, key, keyStrokeString, keyString,
             validKeys = [];
