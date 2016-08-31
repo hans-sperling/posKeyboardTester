@@ -206,6 +206,29 @@
     }
 
 
+    function markKey(key) {
+        var start, end,
+            backgroundColor = fallback.strokedColor,
+            borderColor     = fallback.strokedColor,
+            markedColor     = '#f0f0f0',
+            dimension       = ((key.dimension)       ? key.dimension       : fallback.dimension);
+
+
+        // Positioning
+        start = {
+            x : (Number((key.pos.x) - 1) * unitSize),
+            y : (Number((key.pos.y) - 1) * unitSize)
+        };
+        end = {
+            x : (start.x + (Number(dimension.x) * unitSize)),
+            y : (start.y + (Number(dimension.y) * unitSize))
+        };
+
+        // Draw / Remove
+        drawKeyFrame(context, start, end, backgroundColor, borderColor);
+        drawKey(key);
+    }
+
     function removeKey(key) {
         var start, end,
             backgroundColor = fallback.strokedColor,
@@ -308,6 +331,7 @@
         run       : run,
         update    : update,
 
-        removeKey: removeKey
+        removeKey : removeKey,
+        markKey   : markKey
     }});
 })(window[APPKEY]);

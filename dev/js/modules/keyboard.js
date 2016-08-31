@@ -72,7 +72,12 @@
             if (keys.hasOwnProperty(i)) {
                 var sortedKeys = keys[i].input.sort();
 
-                result.push([sortedKeys.join('-'), i]);
+                //result.push([sortedKeys.join('-'), i]);
+                result.push({
+                    index      : i,
+                    sortedKeys : sortedKeys.join('-'),
+                    pos        : keys[i].pos
+                });
             }
         }
         return result;

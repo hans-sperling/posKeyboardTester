@@ -6,15 +6,16 @@
 
     // ------------------------------------------------------------------------------------------------------ Properties
 
-    var render        = null,
-        keyboard      = null,
-        keyIndexes    = [],
-        isTesting     = false,
-        isPaused      = false,
-        keyStrokes    = [],
-        strokedKeys   = [],
-        $toggleButton = null,
-        $layout       = null;
+    var render         = null,
+        keyboard       = null,
+        keyIndexes      = [],
+        testingKeyInfo = {},
+        isTesting      = false,
+        isPaused       = false,
+        keyStrokes     = [],
+        strokedKeys    = [],
+        $toggleButton  = null,
+        $layout        = null;
 
     // ------------------------------------------------------------------------------------------------ Module interface
 
@@ -71,8 +72,9 @@
             e.preventDefault();
 
             // Test starts
-            keyboard  = app.getModule('keyboard');
+            keyboard   = app.getModule('keyboard');
             keyIndexes = keyboard.getSortedKeyIndexes();
+
 
             if (!isTesting && !isPaused) {
                 isTesting = true;
@@ -82,6 +84,8 @@
                     .addClass('active')
                     .removeClass('paused')
                     .html('Stop testing');
+
+                testingKeyInfo = testKey().start();
             }
             else if (isTesting && !isPaused) {
                 isTesting = false;
@@ -114,7 +118,6 @@
                     .html('Paused...');
             }
         });
-
         $toggleButton.on('keydown.testing', function(e) {
             e = e || window.e;
             e.preventDefault();
@@ -139,22 +142,64 @@
             e.preventDefault();
 
             var indexString = pressedKeyExists(keyStrokes),
-                keyConfig   = {},
-                key         = e.which || e.keyCode || e.charCode;
+                sortedKeyStroke = keyStrokes.sort().join('-'),
+                keyConfig       = {},
+                key             = e.which || e.keyCode || e.charCode;
 
             if (key >= 0) {
-                keyConfig = keyboard.getKey(indexString);
 
-                // @todo - To prevent hiding the key twice or more, it is necessary to create a list of all pressed keys
-                if (keyConfig) {
+                if(sortedKeyStroke === testingKeyInfo.sortedKeys) {
+                    keyConfig = keyboard.getKey(indexString);
                     render.removeKey(keyConfig);
+                    testingKeyInfo = testKey().next();
+                    //render.markKey(keyConfig);
                 }
+
+
+
+                /*
+                 * To prevent hiding the key twice or more, it is necessary to create a list of all pressed keys
+                 *
+                 * @todo - It is important to mark the key you should stroke to test for the right key
+                 */
+                if (keyConfig) {
+                    //if (testingKeyInfo)
+                    /*for (var i in keyIndexes) {
+                        if (keyIndexes.hasOwnProperty(i)) {
+                            if (   (keyIndexes[i].pos.x === keyConfig.pos.x)
+                                && (keyIndexes[i].pos.y === keyConfig.pos.y)) {
+
+                                if (!keyIndexes[i].isStroked) {
+                                    keyIndexes[i].isStroked = true;
+                                    render.removeKey(keyConfig);
+                                }
+                            }
+                        }
+                    }*/
+                }
+
 
                 keyStrokes = [];
             }
 
             return indexString;
         });
+    }
+
+
+    function testKey() {
+        var i = 0;
+        return {
+            start : function start() {
+                i = 0;
+                return keyIndexes[i];
+            },
+            next : function next() {
+                i++;
+                return keyIndexes[i];
+            }
+        }
+
     }
 
 
@@ -169,7 +214,7 @@
             if (keyIndexes.hasOwnProperty(i)) {
                 strokeString = pressedKeys.sort().join('-');
 
-                if (keyIndexes[i][0] == strokeString) {
+                if (keyIndexes[i].sortedKeys == strokeString) {
 
                     return i;
                 }
