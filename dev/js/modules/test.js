@@ -149,7 +149,7 @@
             if (key >= 0) {
 
                 if(sortedKeyStroke === testingKeyInfo.sortedKeys) {
-                    keyConfig = keyboard.getKey(indexString);
+                    keyConfig = keyboard.getKeyByIndex(indexString);
                     render.removeKey(keyConfig);
                     testingKeyInfo = testKey().next();
                     //render.markKey(keyConfig);

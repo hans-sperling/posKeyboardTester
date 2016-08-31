@@ -84,13 +84,64 @@
     }
 
 
-    function getKey(index) {
+    function getKeyByIndex(index) {
         if (keys.hasOwnProperty(index)) {
             return keys[index];
         }
-        else {
+
+        return false;
+    }
+
+
+    function getKeyByPosition(position) {
+        var i, key;
+
+        for (i in keys) {
+            if (keys.hasOwnProperty(i)) {
+                key = keys[i];
+                if (   (isObject(key.pos))
+                    && (isObject(key.pos.x) && key.pos.x == position.x)
+                    && (isObject(key.pos.y) && key.pos.x == position.x)) {
+
+                    return key;
+                }
+            }
+        }
+
+        return false;
+    }
+
+
+    function getKeysByKeystroke(keyStroke) {
+        var i, key, keyStrokeString, keyString,
+            validKeys = [];
+
+        if (!isArray(keyStroke)) {
             return false;
         }
+
+        keyStrokeString = keyStroke.sort().join('-');
+
+        for (i in keys) {
+            if (keys.hasOwnProperty(i)) {
+                key = keys[i];
+                if (!isArray(key.input)) {
+                    continue;
+                }
+
+                keyString = key.input.sort().join('-');
+
+                if (keyStrokeString == keyString) {
+                    validKeys.push(key);
+                }
+            }
+        }
+
+        if (validKeys.length <= 0) {
+            return false;
+        }
+
+        return validKeys;
     }
 
 
@@ -98,11 +149,13 @@
 
     // Append module with public methods and properties
     app.appendModule({ keyboard : {
-        init      : init,
-        run       : run,
-        update    : update,
+        init   : init,
+        run    : run,
+        update : update,
 
         getSortedKeyIndexes : getSortedKeyIndexes,
-        getKey              : getKey
+        getKeyByIndex       : getKeyByIndex,
+        getKeyByPosition    : getKeyByPosition,
+        getKeysByKeystroke  : getKeysByKeystroke
     }});
 })(window[APPKEY]);
