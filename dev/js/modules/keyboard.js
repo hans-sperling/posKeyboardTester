@@ -133,18 +133,18 @@
     /**
      * Returns the key objects with the same input as the given keystroke or false if the index dose not exists.
      *
-     * @param   {Array} keyStroke - List of inputs
+     * @param   {Array} keystroke - List of inputs
      * @returns {Boolean|Object}
      */
-    function getKeysByKeystroke(keyStroke) {
-        var i, key, keyStrokeString, keyString,
+    function getKeysByKeystroke(keystroke) {
+        var i, key, keystrokeString, keyString,
             validKeys = [];
 
-        if (!isArray(keyStroke)) {
+        if (!isArray(keystroke)) {
             return false;
         }
 
-        keyStrokeString = keyStroke.sort().join('-');
+        keystrokeString = keystroke.sort().join('-');
 
         for (i in keys) {
             if (keys.hasOwnProperty(i)) {
@@ -155,7 +155,7 @@
 
                 keyString = key.input.sort().join('-');
 
-                if (keyStrokeString == keyString) {
+                if (keystrokeString == keyString) {
                     validKeys.push(key);
                 }
             }

@@ -8,11 +8,11 @@
 
     var render         = null,
         keyboard       = null,
-        keyIndexes      = [],
-        testingKeyInfo = {},
+        testKeyCounter = null,
+        testingKey     = {},
         isTesting      = false,
         isPaused       = false,
-        keyStrokes     = [],
+        keystroke      = [],
         strokedKeys    = [],
         $toggleButton  = null,
         $layout        = null;
@@ -71,9 +71,7 @@
         $toggleButton.on('click.testing', function(e) {
             e.preventDefault();
 
-            // Test starts
-            keyboard   = app.getModule('keyboard');
-            keyIndexes = keyboard.getSortedKeyIndexes();
+            keyboard = app.getModule('keyboard');
 
             if (!isTesting && !isPaused) {
                 isTesting = true;
@@ -84,7 +82,7 @@
                     .removeClass('paused')
                     .html('Stop testing');
 
-                testingKeyInfo = testKey().start();
+                testingKey = testKey().start();
             }
             else if (isTesting && !isPaused) {
                 isTesting = false;
@@ -117,22 +115,23 @@
                     .html('Paused...');
             }
         });
+
         $toggleButton.on('keydown.testing', function(e) {
             e = e || window.e;
             e.preventDefault();
 
             var isNewKey = true,
-                key      = e.which || e.keyCode || e.charCode;
+                keyInput = e.which || e.keyCode || e.charCode;
 
-            for (var i in keyStrokes) {
-                if (keyStrokes.hasOwnProperty(i) && keyStrokes[i] == key) {
+            for (var i in keystroke) {
+                if (keystroke.hasOwnProperty(i) && keystroke[i] == keyInput) {
                     isNewKey = false;
                     break;
                 }
             }
 
             if (isNewKey) {
-                keyStrokes.push(key);
+                keystroke.push(keyInput);
             }
         });
 
@@ -140,62 +139,31 @@
             e = e || window.e;
             e.preventDefault();
 
-            var indexString = pressedKeyExists(keyStrokes),
-                sortedKeyStroke = keyStrokes.sort().join('-'),
+            var keystrokeString = keystroke.sort().join('-'),
+                keyString       = testingKey.input.sort().join('-'),
                 keyConfig       = {},
-                key             = e.which || e.keyCode || e.charCode;
+                keyInput        = e.which || e.keyCode || e.charCode;
 
-            if (key >= 0) {
-
-                if(sortedKeyStroke === testingKeyInfo.sortedKeys) {
-                    keyConfig = keyboard.getKeyByIndex(indexString);
-                    render.removeKey(keyConfig);
-                    testingKeyInfo = testKey().next();
-                    //render.markKey(keyConfig);
-                }
-
-
-
-                /*
-                 * To prevent hiding the key twice or more, it is necessary to create a list of all pressed keys
-                 *
-                 * @todo - It is important to mark the key you should stroke to test for the right key
-                 */
-                if (keyConfig) {
-                    //if (testingKeyInfo)
-                    /*for (var i in keyIndexes) {
-                        if (keyIndexes.hasOwnProperty(i)) {
-                            if (   (keyIndexes[i].pos.x === keyConfig.pos.x)
-                                && (keyIndexes[i].pos.y === keyConfig.pos.y)) {
-
-                                if (!keyIndexes[i].isStroked) {
-                                    keyIndexes[i].isStroked = true;
-                                    render.removeKey(keyConfig);
-                                }
-                            }
-                        }
-                    }*/
-                }
-
-
-                keyStrokes = [];
+            if(keystrokeString == keyString) {
+                render.removeKey(testingKey);
+                testingKey = testKey().next();
+                render.markKey(testingKey);
             }
 
-            return indexString;
+            keystroke = [];
         });
     }
 
 
     function testKey() {
-        var i = 0;
         return {
             start : function start() {
-                i = 0;
-                return keyIndexes[i];
+                testKeyCounter = 0;
+                return keyboard.getKeyByIndex(testKeyCounter);
             },
             next : function next() {
-                i++;
-                return keyIndexes[i];
+                testKeyCounter++;
+                return keyboard.getKeyByIndex(testKeyCounter);
             }
         }
 

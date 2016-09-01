@@ -30,6 +30,7 @@
         fallback = {
             backgroundColor     : '',
             borderColor         : '',
+            markedColor         : '',
             strokedColor        : '',
             dimension           : {},
             font                : '',
@@ -93,6 +94,7 @@
         };
         fallback.backgroundColor     = cfg.defaults.backgroundColor;
         fallback.borderColor         = cfg.defaults.borderColor;
+        fallback.markedColor         = cfg.defaults.markedColor;
         fallback.strokedColor        = cfg.defaults.strokedColor;
         fallback.font                = cfg.defaults.font;
         fallback.fontSize            = cfg.defaults.fontSize;
@@ -208,11 +210,9 @@
 
     function markKey(key) {
         var start, end,
-            backgroundColor = fallback.strokedColor,
-            borderColor     = fallback.strokedColor,
-            markedColor     = '#f0f0f0',
-            dimension       = ((key.dimension)       ? key.dimension       : fallback.dimension);
-
+            backgroundColor = fallback.markedColor,
+            borderColor     = fallback.markedColor,
+            dimension       = ((key.dimension) ? key.dimension : fallback.dimension);
 
         // Positioning
         start = {
@@ -233,7 +233,7 @@
         var start, end,
             backgroundColor = fallback.strokedColor,
             borderColor     = fallback.strokedColor,
-            dimension       = ((key.dimension)       ? key.dimension       : fallback.dimension);
+            dimension       = ((key.dimension) ? key.dimension : fallback.dimension);
 
 
         // Positioning
